@@ -1,0 +1,15 @@
+.hover-link:hover {
+    cursor: pointer;
+    color: red;
+}
+
+.like-box {
+    position: absolute;
+    z-index: 4;
+    color: red;
+    right: 5px;
+}
+
+.hiddenBox {
+    display: none !important;
+}
