@@ -1,5 +1,6 @@
 import { nation } from "./classobject/nation.js";
 import { validateFormInputSuccesDanger } from "./login.js";
+import { messageBox, SUCCESS, ERROR } from "./messageBox.js";
 const LOOK_GOOD = "Looks good!";
 $(document).ready(() => {
     checkFromOnInput();
@@ -9,7 +10,6 @@ $(document).ready(() => {
         let isMax = checkNotValue("#max", "#statusMessageMax");
         let isPrice = checkNotValue("#price", "#statusMessagePrice");
         if (isName && isMin && isMax && isPrice) {
-            console.log("b");
             callApiRegisterPitch();
         }
     })
@@ -23,7 +23,7 @@ function callApiRegisterPitch() {
         price: $("#price").val(),
     });
     $.ajax({
-        url: "http://localhost:8080/apis/register-pitch",
+        url: "http://localhost:8080/api/pitch/register",
         dataType: "json",
         type: "POST",
         data: dataRequestRegisterPitch,
@@ -74,3 +74,5 @@ function checkNotValue(idInput, idStatus) {
     }
 
 }
+
+export {checkNotValue,checkFromOnInput}

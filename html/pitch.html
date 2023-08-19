@@ -15,6 +15,11 @@
         integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../css/messageBox.css">
     <link rel="stylesheet" href="../css/home.css">
+    <style>
+        .hiddenElement {
+            display: none;
+        }
+    </style>
 </head>
 
 <body style="position: relative;">
@@ -214,7 +219,8 @@
                 <hr>
                 <ul class="nav nav-pills flex-column mb-auto">
                     <li class="nav-item ">
-                        <a href="http://127.0.0.1:5500/html/dasboard.html" class="nav-link active" aria-current="page">
+                        <a href="http://127.0.0.1:5500/html/dasboard.html" class="nav-link link-dark bg-white "
+                            aria-current="page">
                             <svg class="bi me-2" width="16" height="16">
                                 <use xlink:href="#home"></use>
                             </svg>
@@ -222,7 +228,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="http://127.0.0.1:5500/html/pitch.html" class="nav-link link-dark bg-white ">
+                        <a href="http://127.0.0.1:5500/html/pitch.html" class="nav-link active">
                             <svg class="bi me-2" width="16" height="16">
                                 <use xlink:href="#speedometer2"></use>
                             </svg>
@@ -257,59 +263,102 @@
                 <hr>
                 <div class="my-3"></div>
             </div>
-            <div class="col-9 bg-white p-4 shadow border-danger border " style="border-radius: 5px;">
+            <div class="col-9 bg-white p-4 shadow border-danger border " style="border-radius: 5px;" id="listViewPitch">
                 <h3 class="text-center mb-5">Pitch</h3>
                 <div class="mb-4">
                     <a href="http://127.0.0.1:5500/html/register-pitch.html" type="button"
                         class="btn btn-outline-info">Create</a>
                 </div>
-                <div id="renderPitch">
-                    <table class="table align-middle mb-0 bg-white">
-                        <thead class="bg-light">
+                <div>
+                    <table class="table align-middle mb-0 bg-light">
+                        <thead class="bg-info">
                             <tr>
-                                <th>index</th>
+                                <th>Index</th>
                                 <th>Name</th>
-                                <th>Title</th>
+                                <th>Min people</th>
+                                <th>Max people</th>
                                 <th colspan="2">Actions</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <img src="https://mdbootstrap.com/img/new/avatars/8.jpg" alt=""
-                                            style="width: 45px; height: 45px" class="rounded-circle" />
-                                        <div class="ms-3">
-                                            <p class="fw-bold mb-1">John Doe</p>
-                                            <p class="text-muted mb-0">john.doe@gmail.com</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <p class="fw-normal mb-1">Software engineer</p>
-                                    <p class="text-muted mb-0">IT department</p>
-                                </td>
-                                <td>
-                                    <span class="badge badge-success rounded-pill d-inline">Active</span>
-                                </td>
-                                <td>Senior</td>
-                                <td>
-                                    <button type="button" class="btn btn-link btn-sm btn-rounded">
-                                        Edit
-                                    </button>
-                                    <button type="button" class="btn btn-link btn-sm btn-rounded">
-                                        Edit
-                                    </button>
-                                    <button type="button" class="btn btn-link btn-sm btn-rounded">
-                                        Edit
-                                    </button>
-                                </td>
-                            </tr>
+                        <tbody id="renderPitch">
+
 
                         </tbody>
                     </table>
+
+                </div>
+                <div class="mb-3 mt-5 d-flex justify-content-center" id="paging">
+                    <ul class="pagination ">
+                        <li class="page-item disabled">
+                            <a class="page-link" onclick="pageRenderPitch()" tabindex="-1"
+                                aria-disabled="true">Previous</a>
+                        </li>
+                        <li class="page-item active" aria-current="page">
+                            <a class="page-link" onclick="pageRenderPitch()">1 <span
+                                    class="visually-hidden">(current)</span></a>
+                        </li>
+                        <li class="page-item"><a class="page-link" onclick="pageRenderPitch()">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" onclick="pageRenderPitch()">Next</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
+
+            <div class="col-9 bg-white p-4 shadow border-danger border hiddenElement" style="border-radius: 5px;"
+                id="editViewPitch">
+                <h3 class="text-center mb-5">Edit Pitch</h3>
+                <div class="mb-4">
+                    <a href="http://127.0.0.1:5500/html/pitch.html" type="button" class="btn btn-outline-info">List</a>
+                </div>
+                <form>
+                    <input type="text" id="idPitch" hidden>
+                    <!-- Name input -->
+                    <div class="form-outline">
+                        <input type="text" id="name" class="form-control mb-0" data-mdb-showcounter="true"
+                            maxlength="30" required />
+                        <label class="form-label" for="name">Name buisiness</label>
+                        <div class="form-helper "></div>
+                    </div>
+                    <div class="mb-4" id="statusMessageName"></div>
+
+
+                    <!-- time input -->
+                    <div class="d-flex justify-content-between">
+                        <div class="form-outline">
+                            <input type="number" id="min" class="form-control mb-0 " required />
+                            <label class="form-label" for="min">people min</label>
+
+                        </div>
+                        <div style="width: 3rem;"></div>
+                        <div class="form-outline ">
+                            <input type="number" id="max" class="form-control mb-0 " required />
+                            <label class="form-label" for="max">people max</label>
+
+                        </div>
+                    </div>
+                    <div class="d-flex ">
+                        <div class="mb-4 col-6" id="statusMessageMin"></div>
+                        <div class="px-2"></div>
+                        <div class="mb-4 col-6" id="statusMessageMax"></div>
+                    </div>
+
+                    <!-- Name input -->
+                    <div class="form-outline">
+                        <input type="number" id="price" class="form-control mb-0" required />
+                        <label class="form-label" for="price">Price vnd / 30m</label>
+                    </div>
+                    <div class="mb-4" id="statusMessagePrice"></div>
+
+
+                    <div class="text-center">
+                        <button type="button" class="btn btn-primary" id="btnSubmit">Submit</button>
+                    </div>
+                </form>
+
+            </div>
+
         </div>
 
     </div>
@@ -437,7 +486,130 @@
     </footer>
     <!-- Footer -->
     <script type="module" src="../js/home.js"></script>
-    <script type="module" src="../js/scripts.js"></script>
+    <script type="module" src="../js/pitch.js"></script>
+    <script>
+        function editPitch(id) {
+            $("#listViewPitch").addClass("hiddenElement");
+            $("#editViewPitch").removeClass("hiddenElement");
+
+            $.ajax({
+                url: "http://localhost:8080/api/pitch/edit/" + id,
+                type: "GET",
+                dataType: "json",
+                crossDomain: true,
+                headers: { Authentication: 'Bearer ' },
+                contentType: 'application/json',
+                success: (response) => {
+                    $("#idPitch").val(response.id);
+                    $("#name").val(response.name);
+                    $("#min").val(response.min_people);
+                    $("#max").val(response.max_people);
+                    $("#price").val(response.price);
+                    $("#min").trigger("focus");
+                    $("#max").trigger("focus");
+                    $("#price").trigger("focus");
+                    $("#name").trigger("focus");
+                },
+                erorr: (e) => {
+                    console.log(e);
+                }
+            })
+        }
+        function isStatus(id) {
+            $.ajax({
+                url: "http://localhost:8080/api/pitch/status/" + id,
+                type: "POST",
+                dataType: "json",
+                crossDomain: true,
+                headers: { Authentication: 'Bearer ' },
+                contentType: 'application/json',
+                success: (response) => {
+                    history.go(0);
+                },
+                erorr: (e) => {
+                    console.log(e);
+                }
+            })
+        }
+
+        function pageRenderPitch(pageIndex) {
+            $.ajax({
+                url: "http://localhost:8080/api/pitch/list?page=" + pageIndex,
+                type: "GET",
+                dataType: "json",
+                crossDomain: true,
+                headers: { Authentication: 'Bearer ' },
+                contentType: 'application/json',
+                success: (response) => {
+                    callApiPitch(response.content);
+                    renderPaging(response.totalPages, response.pageable.pageNumber);
+
+                },
+                erorr: (e) => {
+                    console.log(e);
+                }
+            })
+        }
+        function renderPaging(totalPages, pageNumber) {
+    let temp = " <ul class='pagination'>";
+    if (pageNumber == 0) {
+        temp += `<li class='page-item disabled'><a class="page-link" onclick="pageRenderPitch(${pageNumber})" tabindex="-1" aria-disabled="true">Previous</a>`
+            + "</li>";
+    } else {
+        temp += `<li class='page-item '><a class="page-link" onclick="pageRenderPitch(${pageNumber -1})" tabindex="-1" >Previous</a>`
+            + "</li>";
+    }
+
+    for (let i = 0; i < totalPages; i++) {
+        if(i == pageNumber){
+            temp += ` <li class="page-item active" aria-current="page">
+            <a class="page-link" onclick="pageRenderPitch(${pageNumber})">${i+1} <span class="visually-hidden">(current)</span></a>
+        </li>`;
+        }else if(totalPages -6 >1){
+            temp +=`<li class="page-item">.</li>`;
+            continue;
+        }
+        else{
+            temp += `<li class="page-item"><a class="page-link" onclick="pageRenderPitch(${i})">${i+1}</a></li>`;
+        }
+
+    }
+    if (pageNumber == totalPages -1) {
+        temp += `<li class="page-item disabled">
+                        <a class="page-link" onclick="pageRenderPitch(${pageNumber})" aria-disabled="true">Next</a>
+                 </li>
+                </ul>`;
+    } else {
+        temp += `<li class="page-item">
+                        <a class="page-link" onclick="pageRenderPitch(${pageNumber +1})"">Next</a>
+                    </li>
+                </ul>`;
+    }
+        $("#paging").html(temp);
+}
+        function callApiPitch(data) {
+            let temp = "";
+            for (let i = 0; i < data.length; i++) {
+                temp += `<tr>
+                        <td>${i + 1}</td>
+                        <td class="fw-normal mb-1">${data[i].name}</td>
+                        <td>${data[i].min_people}</td>
+                        <td>${data[i].max_people}</td>
+                        <td>
+                            <button type="button" class="btn btn-outline-info btn-rounded" data-mdb-ripple-color="dark" onclick="editPitch(${data[i].id})">edit</button>`;
+                if (data[i].status) {
+                    temp += `<button type="button" class="btn btn-outline-success btn-rounded" data-mdb-ripple-color="dark" onclick="isStatus(${data[i].id})">is active</button>
+                     </td>
+                     </tr>`;
+                } else {
+                    temp += `<button type="button" class="btn btn-outline-danger btn-rounded" data-mdb-ripple-color="dark" onclick="isStatus(${data[i].id})">stop working</button>
+            </td>
+            </tr>`;
+                }
+            }
+            $("#renderPitch").html(temp);
+        }
+    </script>
     <!-- MDB -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.js"></script>
 </body>
