@@ -15,11 +15,10 @@
         integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../css/messageBox.css">
     <link rel="stylesheet" href="../css/home.css">
-    <link rel="stylesheet" href="../css/select.css">
-
 </head>
 
-<body>
+<body style="position: relative;">
+
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <!-- Container wrapper -->
@@ -204,113 +203,108 @@
     </svg>
     <div class="container py-5 my-2 bg-light">
         <div class="mb-5 d-flex justify-content-between">
-         
-            <div class="border border-danger shadow p-3 mb-5 bg-body rounded" style="width: 300px; border-radius: 10px;">
-                <img src="https://i.pinimg.com/originals/9b/22/de/9b22ded95ac198d43d2fa1f1cf88970f.png" class="img-fluid hover-shadow"
-                    alt="Los Angeles Skyscrapers" style="height: 100%; border-radius: 10px;"/>
+            <div class="d-flex flex-column flex-shrink-0 p-3 bg-white border border-danger shadow"
+                style="width: 280px; border-radius: 5px;">
+                <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+                    <svg class="bi me-2" width="40" height="32">
+                        <use xlink:href="#bootstrap"></use>
+                    </svg>
+                    <span class="fs-4">Dasboard</span>
+                </a>
+                <hr>
+                <ul class="nav nav-pills flex-column mb-auto">
+                    <li class="nav-item ">
+                        <a href="http://127.0.0.1:5500/html/dasboard.html" class="nav-link active" aria-current="page">
+                            <svg class="bi me-2" width="16" height="16">
+                                <use xlink:href="#home"></use>
+                            </svg>
+                            Buisiness
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://127.0.0.1:5500/html/pitch.html" class="nav-link link-dark bg-white ">
+                            <svg class="bi me-2" width="16" height="16">
+                                <use xlink:href="#speedometer2"></use>
+                            </svg>
+                            Pitch
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link link-dark bg-white">
+                            <svg class="bi me-2" width="16" height="16">
+                                <use xlink:href="#table"></use>
+                            </svg>
+                            Orders
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link link-dark bg-white">
+                            <svg class="bi me-2" width="16" height="16">
+                                <use xlink:href="#grid"></use>
+                            </svg>
+                            Products
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link link-dark bg-white">
+                            <svg class="bi me-2" width="16" height="16">
+                                <use xlink:href="#people-circle"></use>
+                            </svg>
+                            Customers
+                        </a>
+                    </li>
+                </ul>
+                <hr>
+                <div class="my-3"></div>
             </div>
-            <div class="col-9 bg-white p-4 shadow border-danger border" style="border-radius: 5px;">
-                <h3 class="text-center mb-5">REGISTER BUISINESS</h3>
+            <div class="col-9 bg-white p-4 shadow border-danger border " style="border-radius: 5px;">
+                <h3 class="text-center mb-5">Pitch</h3>
+                <div class="mb-4">
+                    <a href="http://127.0.0.1:5500/html/edit-buisiness.html" type="button"
+                        class="btn btn-outline-info">Edit</a>
+
+                </div>
                 <form>
+                    <input type="text" id="idBuisiness" hidden>
                     <!-- Name input -->
                     <div class="form-outline">
-                        <input type="text" id="registerName" class="form-control mb-0" data-mdb-showcounter="true"
+                        <input type="text" id="name" class="form-control mb-0" data-mdb-showcounter="true"
                             maxlength="30" required />
-                        <label class="form-label" for="registerName">Name buisiness</label>
+                        <label class="form-label" for="name">Name buisiness</label>
                         <div class="form-helper "></div>
                     </div>
-                    <div class="mb-4" id="statusMessageRegisterName"></div>
+                    <div class="mb-4" id="statusMessageName"></div>
 
 
                     <!-- time input -->
                     <div class="d-flex justify-content-between">
                         <div class="form-outline">
-                            <input type="time" id="registerTimeOpen" class="form-control mb-0 " required />
-                            <label class="form-label" for="registerTimeOpen">Time open</label>
+                            <input type="number" id="min" class="form-control mb-0 " required />
+                            <label class="form-label" for="min">people min</label>
 
                         </div>
                         <div style="width: 3rem;"></div>
                         <div class="form-outline ">
-                            <input type="time" id="registerTimeClose" class="form-control mb-0 " required />
-                            <label class="form-label" for="registerTimeClose">Time Close</label>
+                            <input type="number" id="max" class="form-control mb-0 " required />
+                            <label class="form-label" for="max">people max</label>
 
                         </div>
                     </div>
                     <div class="d-flex ">
-                        <div class="mb-4 col-6" id="statusMessageRegisterTimeOpen"></div>
+                        <div class="mb-4 col-6" id="statusMessageMin"></div>
                         <div class="px-2"></div>
-                        <div class="mb-4 col-6" id="statusMessageRegisterTimeClose"></div>
+                        <div class="mb-4 col-6" id="statusMessageMax"></div>
                     </div>
 
-                    <!-- Address input -->
-                    <div class="d-flex justify-content-between">
-                        <!-- city -->
-                        <div id="select" style="position: relative; max-width: 13rem;">
-                            <div class="form-outline">
-                                <input type="text" id="registerCity" class="form-control mb-0" required />
-                                <label class="form-label" for="registerCity">city</label>
-                            </div>
-                            <ul class="showOption hidden" id="showOptionCity">
-
-                            </ul>
+                        <!-- Name input -->
+                        <div class="form-outline">
+                            <input type="number" id="price" class="form-control mb-0"
+                               required />
+                            <label class="form-label" for="price">Price vnd / 30m</label>
                         </div>
-                        <!-- district -->
-                        <div id="select" style="position: relative; max-width: 13rem;">
-                            <div class="form-outline">
-                                <input type="text" id="registerDistrict" class="form-control mb-0" required />
-                                <label class="form-label" for="registerDistrict">district</label>
-                            </div>
-                            <ul class="showOption hidden" id="showOptionDistrict">
+                        <div class="mb-4" id="statusMessagePrice"></div>
+    
 
-                            </ul>
-                        </div>
-                        <!-- town -->
-                        <div id="select" style="position: relative; max-width: 13rem;">
-                            <div class="form-outline">
-                                <input type="text" id="registerTown" class="form-control mb-0" required />
-                                <label class="form-label" for="registerTown">town</label>
-                            </div>
-                            <ul class="showOption hidden" id="showOptionTown">
-
-                            </ul>
-                        </div>
-                        <!-- street -->
-                        <div id="select" style="position: relative; max-width: 13rem;">
-                            <div class="form-outline">
-                                <input type="text" id="registerStreet" class="form-control mb-0" required />
-                                <label class="form-label" for="registerStreet">street</label>
-                            </div>
-                            <ul class="showOption hidden" id="showOptionStreet">
-
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- Name address home input -->
-                    <div class="form-outline mt-4">
-                        <input type="text" id="registerAddressHome" class="form-control mb-0"
-                            data-mdb-showcounter="true" maxlength="60" required />
-                        <label class="form-label" for="registerAddressHome">Apartment number</label>
-                        <div class="form-helper "></div>
-                    </div>
-                    <div class="mb-4" id="statusMessageRegisterAddressHome"></div>
-                    <!-- discription -->
-                    <div class="form-outline">
-                        <textarea class="form-control" id="registerDescribe" rows="4" data-mdb-showcounter="true"
-                            maxlength="60" required></textarea>
-                        <label class="form-label" for="registerDescribe">Describe</label>
-                        <div class="form-helper "></div>
-
-                    </div>
-                    <div class="mb-4" id="statusMessageRegisterDescribe"></div>
-                    <!-- discription -->
-                    <div class="form-outline">
-                        <textarea class="form-control" id="registerDescription" rows="10" data-mdb-showcounter="true"
-                            maxlength="1000" required></textarea>
-                        <label class="form-label" for="registerDescription">DESCRIBEDESCRIPTION</label>
-                        <div class="form-helper "></div>
-                    </div>
-                    <div class="mb-4" id="statusMessageRegisterDescription"></div>
                     <div class="text-center">
                         <button type="button" class="btn btn-primary" id="btnSubmit">Submit</button>
                     </div>
@@ -443,19 +437,7 @@
     </footer>
     <!-- Footer -->
     <script type="module" src="../js/home.js"></script>
-    <script type="module" src="../js/register-buisiness.js">    </script>
-    <script>
-        function getValue(idSelectInput, idOptionValue, value, idSelectInputNext) {
-            $(idSelectInput).val(value);
-            $(idSelectInput).trigger("focus");
-            $(idOptionValue).hide();
-            if (idSelectInputNext != null) {
-                $(idSelectInputNext).removeAttr("disabled");
-            }
-        }
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js"
-        integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
+    <script type="module" src="../js/scripts.js"></script>
     <!-- MDB -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.js"></script>
 </body>

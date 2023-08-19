@@ -1,6 +1,6 @@
 import { messageBox, SUCCESS, ERROR } from "./messageBox.js";
-
 const LOOK_GOOD = "Looks good!";
+
 
 $(document).ready(() => {
     checkUserLocalStorage();
@@ -178,3 +178,5 @@ function validateFormInputSuccesDanger(id,idStatus,remove,add,removeStatus,addSt
     $(idStatus).addClass(addStatus);
     $(idStatus).html(message);
 }
+
+export {validateFormInputSuccesDanger};

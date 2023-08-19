@@ -6,6 +6,7 @@
     border-radius: 1rem;
     /* animation-name:move;
     animation-duration:3s; */
+    z-index: 4;
 
 }
 

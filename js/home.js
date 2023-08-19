@@ -16,7 +16,7 @@ function callApiHome(){
         crossDomain: true,
         contentType: 'application/json',
         success:  (response) =>{
-            if(!response){
+            if(response){
                 oneHiddenToTrueRemoveHiddenElement("#userNotLogin","#userLogin");
                 callApiIsBuisiness();
               
@@ -31,11 +31,18 @@ function callApiHome(){
 }
 function callApiIsBuisiness(){
     $.ajax({
-        type: "POST",
         url: "http://localhost:8080/api/is-buisiness",
+        type: "POST",
+        crossDomain: true,
+        contentType: 'application/json',
         dataType: "json",
         success:  (response) =>{
-            console.log(response);
+            if(response){
+                oneHiddenToTrueRemoveHiddenElement("#btnRegisterABusiness","#btnBusinessManagement");
+              
+            }else {
+                oneHiddenToTrueRemoveHiddenElement("#btnBusinessManagement","#btnRegisterABusiness");
+            }
         },
         error: (e)=>{
             console.log(e);
