@@ -15,7 +15,6 @@
         integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../css/messageBox.css">
     <link rel="stylesheet" href="../css/home.css">
-    <link rel="stylesheet" href="../css/select.css">
 
 </head>
 
@@ -203,127 +202,63 @@
         </symbol>
     </svg>
     <div class="container py-5 my-2 bg-light">
-        <div class="mb-5 d-flex justify-content-between">
-         
-            <div class="border border-danger shadow p-3 mb-5 bg-body rounded" style="width: 300px; border-radius: 10px;">
-                <img src="https://i.pinimg.com/originals/9b/22/de/9b22ded95ac198d43d2fa1f1cf88970f.png" class="img-fluid hover-shadow"
-                    alt="Los Angeles Skyscrapers" style="height: 100%; border-radius: 10px;"/>
+        <div class="mb-5  justify-content-center bg-white border-light border">
+
+            <div class="d-flex justify-content-between p-4">
+                <div class="col-5 border shadow">
+                    <img style="width: 32.3rem;"
+                        src="https://baokhanhhoa.vn/file/e7837c02857c8ca30185a8c39b582c03/dataimages/202004/original/images5400727_cau_thu_cua_cac_doi_bong_thi_dau_tai_giai_kpl_s1.jpg"
+                        alt="">
+                </div>
+                <div class="col-6">
+                    <h2 class="pb-4" id="idName">Name</h2>
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div class="d-flex col-4 justify-content-between btn btn-outline-info">
+
+
+                            <div class="fs-5" style="color: #36ed12;">
+                                <i class="fa-regular fa-clock" style="color: #36ed12;"></i>
+                                <span id="timeOpen">07:00</span>
+                            </div>
+                            
+                            <div class="fs-5" style="color: #8a8e8f;">
+                                <i class="fa-regular fa-clock" style="color: #8a8e8f;"></i>
+                                <span id="timeClose">02:00</span>
+                            </div>
+                        </div>
+                        <div class="d-flex col-3">
+                            <div class="text-danger text-center col-5">
+                                <div class="fs-5"><i class="fa-regular fa-heart" style="color: #f20202;"></i> </div>
+                                <div class="">
+                                    <span id="like">200</span>
+                                </div>
+                            </div>
+                            <div class="col-1 border-left"></div>
+                            <div class="col-5 text-danger text-center">
+                                <div class="fs-5"><i class="fa-solid fa-eye" style="color: #f50505;"></i></div>
+                                <div id="view">200</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center ">
+                        <div >
+                            <span class=" text-success" id="pitchSize">6</span>
+                            <span>football fields</span>
+                        </div>
+                        <button class="btn btn-success my-3 ">rent</button>
+                    </div>
+                    <div class=" mb-3">
+                        <span class="fs-5">Describe :</span>
+                         <span id="descibe"></span>
+                        </div>
+                </div>
             </div>
-            <div class="col-9 bg-white p-4 shadow border-danger border" style="border-radius: 5px;">
-                <h3 class="text-center mb-5">REGISTER BUISINESS</h3>
-                <form>
-                    <!-- Name input -->
-                    <div class="form-outline">
-                        <input type="text" id="registerName" class="form-control mb-0" data-mdb-showcounter="true"
-                            maxlength="30" required />
-                        <label class="form-label" for="registerName">Name buisiness</label>
-                        <div class="form-helper "></div>
-                    </div>
-                    <div class="mb-4" id="statusMessageRegisterName"></div>
-
-
-                      <!-- Name input -->
-                      <div class="form-outline">
-                        <input type="text" id="registerImg" class="form-control mb-0" data-mdb-showcounter="true"
-                            maxlength="200" required />
-                        <label class="form-label" for="registerImg">Img buisiness</label>
-                        <div class="form-helper "></div>
-                    </div>
-                    <div class="mb-4" id="statusMessageRegisterImg"></div>
-
-                    <!-- time input -->
-                    <div class="d-flex justify-content-between">
-                        <div class="form-outline">
-                            <input type="time" id="registerTimeOpen" class="form-control mb-0 " required />
-                            <label class="form-label" for="registerTimeOpen">Time open</label>
-
-                        </div>
-                        <div style="width: 3rem;"></div>
-                        <div class="form-outline ">
-                            <input type="time" id="registerTimeClose" class="form-control mb-0 " required />
-                            <label class="form-label" for="registerTimeClose">Time Close</label>
-
-                        </div>
-                    </div>
-                    <div class="d-flex ">
-                        <div class="mb-4 col-6" id="statusMessageRegisterTimeOpen"></div>
-                        <div class="px-2"></div>
-                        <div class="mb-4 col-6" id="statusMessageRegisterTimeClose"></div>
-                    </div>
-
-                    <!-- Address input -->
-                    <div class="d-flex justify-content-between">
-                        <!-- city -->
-                        <div id="select" style="position: relative; max-width: 13rem;">
-                            <div class="form-outline">
-                                <input type="text" id="registerCity" class="form-control mb-0" required />
-                                <label class="form-label" for="registerCity">city</label>
-                            </div>
-                            <ul class="showOption hidden" id="showOptionCity">
-
-                            </ul>
-                        </div>
-                        <!-- district -->
-                        <div id="select" style="position: relative; max-width: 13rem;">
-                            <div class="form-outline">
-                                <input type="text" id="registerDistrict" class="form-control mb-0" required />
-                                <label class="form-label" for="registerDistrict">district</label>
-                            </div>
-                            <ul class="showOption hidden" id="showOptionDistrict">
-
-                            </ul>
-                        </div>
-                        <!-- town -->
-                        <div id="select" style="position: relative; max-width: 13rem;">
-                            <div class="form-outline">
-                                <input type="text" id="registerTown" class="form-control mb-0" required />
-                                <label class="form-label" for="registerTown">town</label>
-                            </div>
-                            <ul class="showOption hidden" id="showOptionTown">
-
-                            </ul>
-                        </div>
-                        <!-- street -->
-                        <div id="select" style="position: relative; max-width: 13rem;">
-                            <div class="form-outline">
-                                <input type="text" id="registerStreet" class="form-control mb-0" required />
-                                <label class="form-label" for="registerStreet">street</label>
-                            </div>
-                            <ul class="showOption hidden" id="showOptionStreet">
-
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- Name address home input -->
-                    <div class="form-outline mt-4">
-                        <input type="text" id="registerAddressHome" class="form-control mb-0"
-                            data-mdb-showcounter="true" maxlength="60" required />
-                        <label class="form-label" for="registerAddressHome">Apartment number</label>
-                        <div class="form-helper "></div>
-                    </div>
-                    <div class="mb-4" id="statusMessageRegisterAddressHome"></div>
-                    <!-- discription -->
-                    <div class="form-outline">
-                        <textarea class="form-control" id="registerDescribe" rows="4" data-mdb-showcounter="true"
-                            maxlength="60" required></textarea>
-                        <label class="form-label" for="registerDescribe">Describe</label>
-                        <div class="form-helper "></div>
-
-                    </div>
-                    <div class="mb-4" id="statusMessageRegisterDescribe"></div>
-                    <!-- discription -->
-                    <div class="form-outline">
-                        <textarea class="form-control" id="registerDescription" rows="10" data-mdb-showcounter="true"
-                            maxlength="1000" required></textarea>
-                        <label class="form-label" for="registerDescription">DESCRIBEDESCRIPTION</label>
-                        <div class="form-helper "></div>
-                    </div>
-                    <div class="mb-4" id="statusMessageRegisterDescription"></div>
-                    <div class="text-center">
-                        <button type="button" class="btn btn-primary" id="btnSubmit">Submit</button>
-                    </div>
-                </form>
+            <div class="px-4 my-5">
+                <h4>Description buisiness</h4>
+                <div class="my-3 fs-5" id="description">
+                    aaaaaaaaa
+                </div>
             </div>
         </div>
 
@@ -452,19 +387,9 @@
     </footer>
     <!-- Footer -->
     <script type="module" src="../js/home.js"></script>
-    <script type="module" src="../js/register-buisiness.js">    </script>
-    <script>
-        function getValue(idSelectInput, idOptionValue, value, idSelectInputNext) {
-            $(idSelectInput).val(value);
-            $(idSelectInput).trigger("focus");
-            $(idOptionValue).hide();
-            if (idSelectInputNext != null) {
-                $(idSelectInputNext).removeAttr("disabled");
-            }
-        }
+    <script src="../js/details.js">
+
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js"
-        integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
     <!-- MDB -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.js"></script>
 </body>

@@ -7,11 +7,12 @@ $(document).ready(() => {
    checkFormInputNotValue();
    $("#btnSubmit").click(() => {
     let isName= checkNotValue("#registerName", "#statusMessageRegisterName");
+    let isImg= checkNotValue("#registerImg", "#statusMessageRegisterImg");
     let isTimeOpen= checkNotValue("#registerTimeOpen", "#statusMessageRegisterTimeOpen");
     let isTimeClose= checkNotValue("#registerTimeClose", "#statusMessageRegisterTimeClose");
     let isDescribe= checkNotValue("#registerDescribe", "#statusMessageRegisterDescribe");
     let isDescription= checkNotValue("#registerDescription", "#statusMessageRegisterDescription");
-    if(isName && isTimeOpen && isTimeClose && isDescribe && isDescription
+    if(isName && isImg && isTimeOpen && isTimeClose && isDescribe && isDescription
         && $("#registerCity").val() != ""
         && $("#registerDistrict").val() != ""
         && $("#registerTown").val() != ""
@@ -39,6 +40,7 @@ function callApiRegisterBuisiness(){
     let dataRequestRegisterBuisiness = JSON.stringify(
         {
             name: $("#registerName").val(),
+            img: $("#registerImg").val(),
             time_openStr: $("#registerTimeOpen").val(),
             time_closeStr: $("#registerTimeClose").val(),
             describes: $("#registerDescribe").val(),
@@ -76,6 +78,9 @@ function checkFormInputNotValue(){
   
     $("#registerName").on("input",()=>{
         checkNotValue("#registerName", "#statusMessageRegisterName");
+    })
+    $("#registerImg").on("input",()=>{
+        checkNotValue("#registerImg", "#statusMessageRegisterImg");
     })
     $("#registerTimeOpen").on("input",()=>{
         checkNotValue("#registerTimeOpen", "#statusMessageRegisterTimeOpen");
