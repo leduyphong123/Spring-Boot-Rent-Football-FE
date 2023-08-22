@@ -15,10 +15,106 @@
         integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../css/messageBox.css">
     <link rel="stylesheet" href="../css/home.css">
+    <style>
+        .historySupBox {
+            position: absolute;
+            top: 0px;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 2;
+        }
 
+        .historyChildBox {
+            width: 70%;
+            height: 30%;
+            border: 1px solid #8a8e8f;
+            border-radius: 10px;
+            position: relative;
+            top: 8rem;
+        }
+
+        .deleteIcon {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-size: 1.6rem;
+        }
+
+        .deleteIcon:hover {
+            cursor: pointer;
+            color: #f20202;
+            font-size: 1.7rem;
+        }
+
+        .hiddenBox {
+            display: none;
+        }
+    </style>
 </head>
 
-<body>
+<body style="position: relative;">
+    <div class="container hiddenBox" id="historyBox">
+        <div class="historySupBox d-flex  justify-content-center">
+            <div class="historyChildBox bg-light">
+                <div class="deleteIcon" id="deleteIconSet">
+                    <i class="fa-solid fa-xmark"></i>
+                </div>
+                <div class=" text-center p-4">
+                    <h3 class="mb-4">History</h3>
+                    <table class="table align-middle mb-0 bg-white">
+                        <thead class="bg-light">
+                            <tr>
+                                <th>index</th>
+                                <th>date rent</th>
+                                <th>time start</th>
+                                <th>address</th>
+                                <th>action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="renderHistoryByUser">
+                            <tr>
+                                <td>
+                                    1
+                                </td>
+                                <td>
+                                    Name
+                                </td>
+                                <td>
+                                    a
+                                </td>
+                                <td>address</td>
+                                <td>
+                                    <button type="button" class="btn btn-link btn-sm btn-rounded">
+                                        details
+                                    </button>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                    <div class="mb-3 mt-5 d-flex justify-content-center" id="paging">
+                        <ul class="pagination ">
+                            <li class="page-item disabled">
+                                <a class="page-link" onclick="pageRenderPitch()" tabindex="-1"
+                                    aria-disabled="true">Previous</a>
+                            </li>
+                            <li class="page-item active" aria-current="page">
+                                <a class="page-link" onclick="pageRenderPitch()">1 <span
+                                        class="visually-hidden">(current)</span></a>
+                            </li>
+                            <li class="page-item"><a class="page-link" onclick="pageRenderPitch()">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" onclick="pageRenderPitch()">Next</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <!-- Container wrapper -->
@@ -41,7 +137,7 @@
                 <!-- Left links -->
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link fw-bold hover-link" href="#">HOME</a>
+                        <a class="nav-link fw-bold hover-link" href="http://127.0.0.1:5500/html/home.html">HOME</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link fw-bold hover-link" href="#">POST</a>
@@ -91,12 +187,15 @@
                                 <a class="dropdown-item" href="#">My profile</a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="#" id="btnRegisterABusiness">Register a business</a>
+                                <a class="dropdown-item" href="http://127.0.0.1:5500/html/register-buisiness.html" id="btnRegisterABusiness">Register a business</a>
                                 <a class="dropdown-item" href="http://127.0.0.1:5500/html/dasboard.html"
                                     id="btnBusinessManagement">Business management</a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="#">Logout</a>
+                                <button class="dropdown-item" id="btnHistory">History rent</button>
+                            </li>
+                            <li>
+                                <button class="dropdown-item" onclick="logout()">Logout</button>
                             </li>
                         </ul>
                     </div>
@@ -110,48 +209,36 @@
 
     <div class="container py-5 my-2 bg-light" style="position: relative;">
         <div class=" " style="position: absolute; top:4rem; right: 2rem; z-index: 1;">
-        <img src="../img/hiclipart.com.png" alt="" class="" style=" background: none !important;">
+            <img src="../img/hiclipart.com.png" alt="" class="" style=" background: none !important;">
         </div>
         <div id="carouselExampleCaptions" class="carousel slide" data-mdb-ride="carousel">
             <div class="carousel-indicators">
-              <button
-                type="button"
-                data-mdb-target="#carouselExampleCaptions"
-                data-mdb-slide-to="0"
-                class="active"
-                aria-current="true"
-                aria-label="Slide 1"
-              ></button>
-              <button
-                type="button"
-                data-mdb-target="#carouselExampleCaptions"
-                data-mdb-slide-to="1"
-                aria-label="Slide 2"
-              ></button>
-              <button
-                type="button"
-                data-mdb-target="#carouselExampleCaptions"
-                data-mdb-slide-to="2"
-                aria-label="Slide 3"
-              ></button>
+                <button type="button" data-mdb-target="#carouselExampleCaptions" data-mdb-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-mdb-target="#carouselExampleCaptions" data-mdb-slide-to="1"
+                    aria-label="Slide 2"></button>
+                <button type="button" data-mdb-target="#carouselExampleCaptions" data-mdb-slide-to="2"
+                    aria-label="Slide 3"></button>
             </div>
             <div class="carousel-inner rounded-5 shadow-4-strong" id="renderHomeNew">
-             
+
             </div>
-            <button class="carousel-control-prev" type="button" data-mdb-target="#carouselExampleCaptions" data-mdb-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
+            <button class="carousel-control-prev" type="button" data-mdb-target="#carouselExampleCaptions"
+                data-mdb-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
             </button>
-            <button class="carousel-control-next" type="button" data-mdb-target="#carouselExampleCaptions" data-mdb-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
+            <button class="carousel-control-next" type="button" data-mdb-target="#carouselExampleCaptions"
+                data-mdb-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
             </button>
-          </div>
+        </div>
 
         <div class="mb-5 mt-5">
             <div class="d-flex justify-content-between pb-2">
                 <h3 class="">Buisiness Ball Like Top</h3>
-                <a class="hover-link" href="#">see all</a>
+                <a class="hover-link" onclick="seeAll('likes')">see all</a>
             </div>
 
             <div class="d-flex justify-content-center row " id="renderHomeLike">
@@ -187,7 +274,7 @@
         <div class="mb-5">
             <div class="d-flex justify-content-between pb-2">
                 <h3 class="">Buisiness Ball View Top</h3>
-                <a class="hover-link" href="#">see all</a>
+                <a class="hover-link" onclick="seeAll('views')">see all</a>
             </div>
 
             <div class="d-flex justify-content-center row " id="renderHomeView">
@@ -344,8 +431,103 @@
     </footer>
     <!-- Footer -->
     <script type="module" src="../js/home.js"></script>
+    <script>
+        function nextDetails(id) {
+            window.location.href = `http://127.0.0.1:5500/html/details.html?id=${id}`;
+        }
+        function seeAll(param) {
+            window.location.href = `http://127.0.0.1:5500/html/list.html?search=&param=${param}&sor=`;
+        }
+        function logout() {
+            window.localStorage.setItem("token", "");
+            history.go(0);
+        }
+    </script>
+    <script>
+        function pageRenderPitch(pageIndex) {
+            $.ajax({
+                url: "http://localhost:8080/api/rent/history?page=" + pageIndex,
+                type: "GET",
+                dataType: "json",
+                crossDomain: true,
+                headers: { Authorization: 'Bearer ' + window.localStorage.getItem("token") },
+                contentType: 'application/json',
+                success: (response) => {
+                    renderHistoryByUser(response.content);
+                    renderPaging(response.totalPages, response.pageable.pageNumber);
+
+                },
+                erorr: (e) => {
+                    console.log(e);
+                }
+            })
+        }
+        function renderPaging(totalPages, pageNumber) {
+            let temp = " <ul class='pagination'>";
+            if (pageNumber == 0) {
+                temp += `<li class='page-item disabled'><a class="page-link" onclick="pageRenderPitch(${pageNumber})" tabindex="-1" aria-disabled="true">Previous</a>`
+                    + "</li>";
+            } else {
+                temp += `<li class='page-item '><a class="page-link" onclick="pageRenderPitch(${pageNumber - 1})" tabindex="-1" >Previous</a>`
+                    + "</li>";
+            }
+
+            for (let i = 0; i < totalPages; i++) {
+                if (i == pageNumber) {
+                    temp += ` <li class="page-item active" aria-current="page">
+            <a class="page-link" onclick="pageRenderPitch(${pageNumber})">${i + 1} <span class="visually-hidden">(current)</span></a>
+        </li>`;
+                } else if (totalPages - 6 > 1) {
+                    temp += `<li class="page-item">.</li>`;
+                    continue;
+                }
+                else {
+                    temp += `<li class="page-item"><a class="page-link" onclick="pageRenderPitch(${i})">${i + 1}</a></li>`;
+                }
+
+            }
+            if (pageNumber == totalPages - 1) {
+                temp += `<li class="page-item disabled">
+                        <a class="page-link" onclick="pageRenderPitch(${pageNumber})" aria-disabled="true">Next</a>
+                 </li>
+                </ul>`;
+            } else {
+                temp += `<li class="page-item">
+                        <a class="page-link" onclick="pageRenderPitch(${pageNumber + 1})"">Next</a>
+                    </li>
+                </ul>`;
+            }
+            $("#paging").html(temp);
+        }
+        function renderHistoryByUser(data) {
+            let temp = "";
+            console.log(data)
+            for (let i = 0; i < data.length; i++) {
+                temp += ` <tr>
+                                <td>
+                                  ${i + 1}
+                                </td>
+                                <td>
+                                  ${data[i].pitch.name}
+                                </td>
+                                <td>
+                                  ${data[i].timeStart}
+                                </td>
+                                <td>${data[i].pitch.buisiness.address}</td>
+                                <td>
+                                  <button type="button" class="btn btn-link btn-sm btn-rounded">
+                                    details
+                                  </button>
+                                </td>
+                              </tr>`
+            }
+            $("#renderHistoryByUser").html(temp);
+        }
+    </script>
     <!-- MDB -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.js"></script>
+    <script type="module" src="../js/homeUser.js"></script>
+    <script type="module" src="../js/history.js"></script>
 </body>
 
 </html>

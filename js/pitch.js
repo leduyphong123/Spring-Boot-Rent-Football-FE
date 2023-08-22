@@ -11,11 +11,11 @@ $(document).ready(() => {
         type: "GET",
         dataType: "json",
         crossDomain: true,
-        headers: { Authentication: 'Bearer ' },
+        headers: {Authorization: 'Bearer '+window.localStorage.getItem("token")},
         contentType: 'application/json',
         success: (response) => {
             callApiPitch(response.content);
-            renderPaging(response.totalPages, response.pageable.pageNumber);
+            renderPagingPitch(response.totalPages, response.pageable.pageNumber);
 
         },
         erorr: (e) => {
@@ -37,7 +37,7 @@ $(document).ready(() => {
 
 
 
-function renderPaging(totalPages, pageNumber) {
+function renderPagingPitch(totalPages, pageNumber) {
     let temp = " <ul class='pagination'>";
     if (pageNumber == 0) {
         temp += `<li class='page-item disabled'><a class="page-link" onclick="pageRenderPitch(${pageNumber})" tabindex="-1" aria-disabled="true">Previous</a>`
@@ -50,29 +50,29 @@ function renderPaging(totalPages, pageNumber) {
     for (let i = 0; i < totalPages; i++) {
         if(i == pageNumber){
             temp += ` <li class="page-item active" aria-current="page">
-            <a class="page-link" onclick="pageRenderPitch(${pageNumber})">${i+1} <span class="visually-hidden">(current)</span></a>
+            <a class="page-link" onclick="pageRenderPitchDasboard(${pageNumber})">${i+1} <span class="visually-hidden">(current)</span></a>
         </li>`;
         }else if(totalPages -6 >1){
             temp +=`<li class="page-item">.</li>`;
             continue;
         }
         else{
-            temp += `<li class="page-item"><a class="page-link" onclick="pageRenderPitch(${i})">${i+1}</a></li>`;
+            temp += `<li class="page-item"><a class="page-link" onclick="pageRenderPitchDasboard(${i})">${i+1}</a></li>`;
         }
 
     }
     if (pageNumber == totalPages -1) {
         temp += `<li class="page-item disabled">
-                        <a class="page-link" onclick="pageRenderPitch(${pageNumber})" aria-disabled="true">Next</a>
+                        <a class="page-link" onclick="pageRenderPitchDasboard(${pageNumber})" aria-disabled="true">Next</a>
                  </li>
                 </ul>`;
     } else {
         temp += `<li class="page-item">
-                        <a class="page-link" onclick="pageRenderPitch(${pageNumber +1})"">Next</a>
+                        <a class="page-link" onclick="pageRenderPitchDasboard(${pageNumber +1})"">Next</a>
                     </li>
                 </ul>`;
     }
-        $("#paging").html(temp);
+        $("#pagingPitch").html(temp);
 }
 function callApiEditPitch() {
     let dataRequestEditPitch = JSON.stringify({
@@ -86,7 +86,7 @@ function callApiEditPitch() {
         dataType: "json",
         type: "POST",
         data: dataRequestEditPitch,
-        headers: { Authentication: 'Bearer ' },
+        headers: {Authorization: 'Bearer '+window.localStorage.getItem("token")},
         crossDomain: true,
         contentType: 'application/json',
         success: (result) => {
@@ -109,6 +109,9 @@ function callApiEditPitch() {
 
 function callApiPitch(data) {
     let temp = "";
+    if(data == null){
+        temp="<div>NO LIST</div>";
+    }else{
     for (let i = 0; i < data.length; i++) {
         temp += `<tr>
                         <td>${i + 1}</td>
@@ -126,7 +129,7 @@ function callApiPitch(data) {
             </td>
             </tr>`;
         }
-    }
+    }}
     $("#renderPitch").html(temp);
 }
 

@@ -15,10 +15,106 @@
         integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../css/messageBox.css">
     <link rel="stylesheet" href="../css/home.css">
+    <style>
+        .historySupBox {
+            position: absolute;
+            top: 0px;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 2;
+        }
 
+        .historyChildBox {
+            width: 70%;
+            height: 55%;
+            border: 1px solid #8a8e8f;
+            border-radius: 10px;
+            position: relative;
+            top: 8rem;
+        }
+
+        .deleteIcon {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-size: 1.6rem;
+        }
+
+        .deleteIcon:hover {
+            cursor: pointer;
+            color: #f20202;
+            font-size: 1.7rem;
+        }
+
+        .hiddenBox {
+            display: none;
+        }
+    </style>
 </head>
 
-<body>
+<body style="position: relative;">
+    <div class="container hiddenBox" id="historyBox">
+        <div class="historySupBox d-flex  justify-content-center">
+            <div class="historyChildBox bg-light">
+                <div class="deleteIcon" id="deleteIconSet">
+                    <i class="fa-solid fa-xmark"></i>
+                </div>
+                <div class=" text-center p-4">
+                    <h3 class="mb-4">History</h3>
+                    <table class="table align-middle mb-0 bg-white">
+                        <thead class="bg-light">
+                            <tr class="align-items-center">
+                                <th>index</th>
+                                <th>date rent</th>
+                                <th>time start</th>
+                                <th>address</th>
+                                <th>action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="renderHistoryByUser">
+                            <tr>
+                                <td>
+                                    1
+                                </td>
+                                <td>
+                                    Name
+                                </td>
+                                <td>
+                                    a
+                                </td>
+                                <td>address</td>
+                                <td>
+                                    <button type="button" class="btn btn-link btn-sm btn-rounded">
+                                        details
+                                    </button>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                    <div class="mb-3 mt-5 d-flex justify-content-center" id="paging">
+                        <ul class="pagination ">
+                            <li class="page-item disabled">
+                                <a class="page-link" onclick="pageRenderPitch()" tabindex="-1"
+                                    aria-disabled="true">Previous</a>
+                            </li>
+                            <li class="page-item active" aria-current="page">
+                                <a class="page-link" onclick="pageRenderPitch()">1 <span
+                                        class="visually-hidden">(current)</span></a>
+                            </li>
+                            <li class="page-item"><a class="page-link" onclick="pageRenderPitch()">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" onclick="pageRenderPitch()">Next</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <!-- Container wrapper -->
@@ -92,10 +188,14 @@
                             </li>
                             <li>
                                 <a class="dropdown-item" href="#" id="btnRegisterABusiness">Register a business</a>
-                                <a class="dropdown-item" href="#" id="btnBusinessManagement">Business management</a>
+                                <a class="dropdown-item" href="http://127.0.0.1:5500/html/dasboard.html"
+                                    id="btnBusinessManagement">Business management</a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="#">Logout</a>
+                                <button class="dropdown-item" id="btnHistory">History rent</button>
+                            </li>
+                            <li>
+                                <button class="dropdown-item" onclick="logout()">Logout</button>
                             </li>
                         </ul>
                     </div>
@@ -230,27 +330,11 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link link-dark bg-white">
+                        <a href="http://127.0.0.1:5500/html/managerent.html" class="nav-link link-dark bg-white">
                             <svg class="bi me-2" width="16" height="16">
                                 <use xlink:href="#table"></use>
                             </svg>
-                            Orders
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link link-dark bg-white">
-                            <svg class="bi me-2" width="16" height="16">
-                                <use xlink:href="#grid"></use>
-                            </svg>
-                            Products
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link link-dark bg-white">
-                            <svg class="bi me-2" width="16" height="16">
-                                <use xlink:href="#people-circle"></use>
-                            </svg>
-                            Customers
+                            Manage rent
                         </a>
                     </li>
                 </ul>
@@ -398,10 +482,96 @@
         <!-- Copyright -->
     </footer>
     <!-- Footer -->
-    <script type="module" src="../js/home.js"></script>
-    <script src="../js/dasboard.js"></script>
+    <script type="module" src="../js/dasboard.js"></script>
     <!-- MDB -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.js"></script>
+    <script type="module" src="../js/homeUser.js"></script>
+    <script>
+      function logout() {
+            window.localStorage.setItem("token", "");
+            history.go(0);
+        }
+        function pageRenderPitch(pageIndex) {
+            $.ajax({
+                url: "http://localhost:8080/api/rent/history?page=" + pageIndex,
+                type: "GET",
+                dataType: "json",
+                crossDomain: true,
+                headers: { Authorization: 'Bearer ' + window.localStorage.getItem("token") },
+                contentType: 'application/json',
+                success: (response) => {
+                    renderHistoryByUser(response.content);
+                    renderPaging(response.totalPages, response.pageable.pageNumber);
+
+                },
+                erorr: (e) => {
+                    console.log(e);
+                }
+            })
+        }
+        function renderPaging(totalPages, pageNumber) {
+            let temp = " <ul class='pagination'>";
+            if (pageNumber == 0) {
+                temp += `<li class='page-item disabled'><a class="page-link" onclick="pageRenderPitch(${pageNumber})" tabindex="-1" aria-disabled="true">Previous</a>`
+                    + "</li>";
+            } else {
+                temp += `<li class='page-item '><a class="page-link" onclick="pageRenderPitch(${pageNumber - 1})" tabindex="-1" >Previous</a>`
+                    + "</li>";
+            }
+
+            for (let i = 0; i < totalPages; i++) {
+                if (i == pageNumber) {
+                    temp += ` <li class="page-item active" aria-current="page">
+            <a class="page-link" onclick="pageRenderPitch(${pageNumber})">${i + 1} <span class="visually-hidden">(current)</span></a>
+        </li>`;
+                } else if (totalPages - 6 > 1) {
+                    temp += `<li class="page-item">.</li>`;
+                    continue;
+                }
+                else {
+                    temp += `<li class="page-item"><a class="page-link" onclick="pageRenderPitch(${i})">${i + 1}</a></li>`;
+                }
+
+            }
+            if (pageNumber == totalPages - 1) {
+                temp += `<li class="page-item disabled">
+                        <a class="page-link" onclick="pageRenderPitch(${pageNumber})" aria-disabled="true">Next</a>
+                 </li>
+                </ul>`;
+            } else {
+                temp += `<li class="page-item">
+                        <a class="page-link" onclick="pageRenderPitch(${pageNumber + 1})"">Next</a>
+                    </li>
+                </ul>`;
+            }
+            $("#paging").html(temp);
+        }
+        function renderHistoryByUser(data) {
+            let temp = "";
+            console.log(data)
+            for (let i = 0; i < data.length; i++) {
+                temp += ` <tr>
+                                <td>
+                                  ${i + 1}
+                                </td>
+                                <td>
+                                  ${data[i].pitch.name}
+                                </td>
+                                <td>
+                                  ${data[i].timeStart}
+                                </td>
+                                <td>${data[i].pitch.buisiness.address}</td>
+                                <td>
+                                  <button type="button" class="btn btn-link btn-sm btn-rounded">
+                                    details
+                                  </button>
+                                </td>
+                              </tr>`
+            }
+            $("#renderHistoryByUser").html(temp);
+        }
+    </script>
+    <script src="../js/history.js"></script>
 </body>
 
 </html>

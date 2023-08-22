@@ -15,111 +15,10 @@
         integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../css/messageBox.css">
     <link rel="stylesheet" href="../css/home.css">
-    <style>
-        .hiddenElement {
-            display: none;
-        }
-    </style>
-    <style>
-        .historySupBox {
-            position: absolute;
-            top: 0px;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 2;
-        }
 
-        .historyChildBox {
-            width: 70%;
-            height: 55%;
-            border: 1px solid #8a8e8f;
-            border-radius: 10px;
-            position: relative;
-            top: 8rem;
-        }
-
-        .deleteIcon {
-            position: absolute;
-            top: 1rem;
-            right: 1.5rem;
-            font-size: 1.6rem;
-        }
-
-        .deleteIcon:hover {
-            cursor: pointer;
-            color: #f20202;
-            font-size: 1.7rem;
-        }
-
-        .hiddenBox {
-            display: none;
-        }
-    </style>
 </head>
 
-<body style="position: relative;">
-    <div class="container hiddenBox" id="historyBox">
-        <div class="historySupBox d-flex  justify-content-center">
-            <div class="historyChildBox bg-light">
-                <div class="deleteIcon" id="deleteIconSet">
-                    <i class="fa-solid fa-xmark"></i>
-                </div>
-                <div class=" text-center p-4">
-                    <h3 class="mb-4">History</h3>
-                    <table class="table align-middle mb-0 bg-white">
-                        <thead class="bg-light">
-                            <tr class="align-items-center">
-                                <th>index</th>
-                                <th>date rent</th>
-                                <th>time start</th>
-                                <th>address</th>
-                                <th>action</th>
-                            </tr>
-                        </thead>
-                        <tbody id="renderHistoryByUser">
-                            <tr>
-                                <td>
-                                    1
-                                </td>
-                                <td>
-                                    Name
-                                </td>
-                                <td>
-                                    a
-                                </td>
-                                <td>address</td>
-                                <td>
-                                    <button type="button" class="btn btn-link btn-sm btn-rounded">
-                                        details
-                                    </button>
-                                </td>
-                            </tr>
-
-                        </tbody>
-                    </table>
-                    <div class="mb-3 mt-5 d-flex justify-content-center" id="paging">
-                        <ul class="pagination ">
-                            <li class="page-item disabled">
-                                <a class="page-link" onclick="pageRenderPitch()" tabindex="-1"
-                                    aria-disabled="true">Previous</a>
-                            </li>
-                            <li class="page-item active" aria-current="page">
-                                <a class="page-link" onclick="pageRenderPitch()">1 <span
-                                        class="visually-hidden">(current)</span></a>
-                            </li>
-                            <li class="page-item"><a class="page-link" onclick="pageRenderPitch()">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" onclick="pageRenderPitch()">Next</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <!-- Container wrapper -->
@@ -142,7 +41,7 @@
                 <!-- Left links -->
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link fw-bold hover-link" href="#">HOME</a>
+                        <a class="nav-link fw-bold hover-link" href="http://127.0.0.1:5500/html/home.html">HOME</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link fw-bold hover-link" href="#">POST</a>
@@ -193,15 +92,10 @@
                             </li>
                             <li>
                                 <a class="dropdown-item" href="#" id="btnRegisterABusiness">Register a business</a>
-                                <a class="dropdown-item" href="http://127.0.0.1:5500/html/dasboard.html"
-                                    id="btnBusinessManagement">Business management</a>
-                            </li>
-
-                            <li>
-                                <button class="dropdown-item" id="btnHistory">History rent</button>
+                                <a class="dropdown-item" href="#" id="btnBusinessManagement">Business management</a>
                             </li>
                             <li>
-                                <button class="dropdown-item" onclick="logout()">Logout</button>
+                                <a class="dropdown-item" href="#">Logout</a>
                             </li>
                         </ul>
                     </div>
@@ -308,143 +202,90 @@
         </symbol>
     </svg>
     <div class="container py-5 my-2 bg-light">
-        <div class="mb-5 d-flex justify-content-between">
-            <div class="d-flex flex-column flex-shrink-0 p-3 bg-white border border-danger shadow"
-                style="width: 280px; border-radius: 5px;">
-                <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-                    <svg class="bi me-2" width="40" height="32">
-                        <use xlink:href="#bootstrap"></use>
-                    </svg>
-                    <span class="fs-4">Dasboard</span>
-                </a>
-                <hr>
-                <ul class="nav nav-pills flex-column mb-auto">
-                    <li class="nav-item ">
-                        <a href="http://127.0.0.1:5500/html/dasboard.html" class="nav-link link-dark bg-white "
-                            aria-current="page">
-                            <svg class="bi me-2" width="16" height="16">
-                                <use xlink:href="#home"></use>
-                            </svg>
-                            Buisiness
-                        </a>
-                    </li>
-                    <li>
-                        <a href="http://127.0.0.1:5500/html/pitch.html" class="nav-link active">
-                            <svg class="bi me-2" width="16" height="16">
-                                <use xlink:href="#speedometer2"></use>
-                            </svg>
-                            Pitch
-                        </a>
-                    </li>
-                    <li>
-                        <a href="http://127.0.0.1:5500/html/managerent.html" class="nav-link link-dark bg-white">
-                            <svg class="bi me-2" width="16" height="16">
-                                <use xlink:href="#table"></use>
-                            </svg>
-                            Manage rent
-                        </a>
-                    </li>
-
-                </ul>
-                <hr>
-                <div class="my-3"></div>
-            </div>
-            <div class="col-9 bg-white p-4 shadow border-danger border " style="border-radius: 5px;" id="listViewPitch">
-                <h3 class="text-center mb-5">Pitch</h3>
-                <div class="mb-4">
-                    <a href="http://127.0.0.1:5500/html/register-pitch.html" type="button"
-                        class="btn btn-outline-info">Create</a>
-                </div>
-                <div>
-                    <table class="table align-middle mb-0 bg-light">
-                        <thead class="bg-info">
-                            <tr>
-                                <th>Index</th>
-                                <th>Name</th>
-                                <th>Min people</th>
-                                <th>Max people</th>
-                                <th colspan="2">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="renderPitch">
-
-
-                        </tbody>
-                    </table>
-
-                </div>
-                <div class="mb-3 mt-5 d-flex justify-content-center" id="pagingPitch">
-                    <ul class="pagination ">
-                        <li class="page-item disabled">
-                            <a class="page-link" onclick="pageRenderPitchDasboard()" tabindex="-1"
-                                aria-disabled="true">Previous</a>
+        <div>
+            <div class="mb-5 d-flex justify-content-between">
+                <div class="d-flex flex-column flex-shrink-0 p-3 bg-white border border-danger shadow"
+                    style="width: 280px; border-radius: 5px;">
+                    <a href="/"
+                        class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+                        <svg class="bi me-2" width="40" height="32">
+                            <use xlink:href="#bootstrap"></use>
+                        </svg>
+                        <span class="fs-4">Menu</span>
+                    </a>
+                    <hr>
+                    <ul class="nav nav-pills flex-column mb-auto">
+                        <li class="nav-item ">
+                            <a href="" class="nav-link active" aria-current="page">
+                                <svg class="bi me-2" width="16" height="16">
+                                    <use xlink:href="#home"></use>
+                                </svg>
+                                Buisiness
+                            </a>
                         </li>
-                        <li class="page-item active" aria-current="page">
-                            <a class="page-link" onclick="pageRenderPitchDasboard()">1 <span
-                                    class="visually-hidden">(current)</span></a>
-                        </li>
-                        <li class="page-item"><a class="page-link" onclick="pageRenderPitchDasboard()">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" onclick="pageRenderPitchDasboard()">Next</a>
-                        </li>
+                        <!-- <li>
+                            <a href="" class="nav-link link-dark bg-white ">
+                                <svg class="bi me-2" width="16" height="16">
+                                    <use xlink:href="#speedometer2"></use>
+                                </svg>
+                                Pitch
+                            </a>
+                        </li> -->
+
                     </ul>
+                    <hr>
+                    <div class="my-3"></div>
                 </div>
-            </div>
+                <div class="col-9 bg-white p-4 shadow border-danger border" style="border-radius: 5px;">
+                    <div class="d-flex justify-content-evenly">
 
-            <div class="col-9 bg-white p-4 shadow border-danger border hiddenElement" style="border-radius: 5px;"
-                id="editViewPitch">
-                <h3 class="text-center mb-5">Edit Pitch</h3>
-                <div class="mb-4">
-                    <a href="http://127.0.0.1:5500/html/pitch.html" type="button" class="btn btn-outline-info">List</a>
-                </div>
-                <form>
-                    <input type="text" id="idPitch" hidden>
-                    <!-- Name input -->
-                    <div class="form-outline">
-                        <input type="text" id="name" class="form-control mb-0" data-mdb-showcounter="true"
-                            maxlength="30" required />
-                        <label class="form-label" for="name">Name buisiness</label>
-                        <div class="form-helper "></div>
-                    </div>
-                    <div class="mb-4" id="statusMessageName"></div>
-
-
-                    <!-- time input -->
-                    <div class="d-flex justify-content-between">
-                        <div class="form-outline">
-                            <input type="number" id="min" class="form-control mb-0 " required />
-                            <label class="form-label" for="min">people min</label>
-
+                        <div class="mb-4">
+                            <button type="button" class="btn btn-outline-secondary"
+                                onclick="callParam('dateCreate')">New</button>
+                            <button type="button" class="btn btn-outline-secondary"
+                                onclick="callParam('likes')">Like</button>
+                            <button type="button" class="btn btn-outline-secondary"
+                                onclick="callParam('views')">View</button>
                         </div>
-                        <div style="width: 3rem;"></div>
-                        <div class="form-outline ">
-                            <input type="number" id="max" class="form-control mb-0 " required />
-                            <label class="form-label" for="max">people max</label>
+                        <div>
+                            <div class="form-outline mb-4">
+                                <input type="text" id="searchAddess" class="form-control" />
+                                <label class="form-label" style="color: #c7c7c7;"
+                                    for="searchAddess">street,town,district,city</label>
+                            </div>
+                        </div>
+                        <div></div>
 
+                        <div class="mb-4">
+                            <button type="button" class="btn btn-outline-secondary"
+                                onclick="callSort('asc')">Ascending</button>
+                            <button type="button" class="btn btn-outline-secondary"
+                                onclick="callSort()">decrease</button>
                         </div>
                     </div>
-                    <div class="d-flex ">
-                        <div class="mb-4 col-6" id="statusMessageMin"></div>
-                        <div class="px-2"></div>
-                        <div class="mb-4 col-6" id="statusMessageMax"></div>
+                    <div id="renderBuisiness" class="d-flex flex-column">
+
+
                     </div>
-
-                    <!-- Name input -->
-                    <div class="form-outline">
-                        <input type="number" id="price" class="form-control mb-0" required />
-                        <label class="form-label" for="price">Price vnd / 30m</label>
+                    <div class="mb-3 mt-5 d-flex justify-content-center" id="paging">
+                        <ul class="pagination ">
+                            <li class="page-item disabled">
+                                <a class="page-link" onclick="pageRenderPitch()" tabindex="-1"
+                                    aria-disabled="true">Previous</a>
+                            </li>
+                            <li class="page-item active" aria-current="page">
+                                <a class="page-link" onclick="pageRenderPitch()">1 <span
+                                        class="visually-hidden">(current)</span></a>
+                            </li>
+                            <li class="page-item"><a class="page-link" onclick="pageRenderPitch()">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" onclick="pageRenderPitch()">Next</a>
+                            </li>
+                        </ul>
                     </div>
-                    <div class="mb-4" id="statusMessagePrice"></div>
-
-
-                    <div class="text-center">
-                        <button type="button" class="btn btn-primary" id="btnSubmit">Submit</button>
-                    </div>
-                </form>
-
+                </div>
             </div>
-
         </div>
 
     </div>
@@ -571,156 +412,123 @@
         <!-- Copyright -->
     </footer>
     <!-- Footer -->
-    <script type="module" src="../js/homeUser.js"></script>
-    <script type="module" src="../js/pitch.js"></script>
-
+    <script type="module" src="../js/list.js"></script>
     <script>
-        function editPitch(id) {
-            $("#listViewPitch").addClass("hiddenElement");
-            $("#editViewPitch").removeClass("hiddenElement");
-
-            $.ajax({
-                url: "http://localhost:8080/api/pitch/edit/" + id,
-                type: "GET",
-                dataType: "json",
-                crossDomain: true,
-                headers: {Authorization: 'Bearer '+window.localStorage.getItem("token")},
-                contentType: 'application/json',
-                success: (response) => {
-                    $("#idPitch").val(response.id);
-                    $("#name").val(response.name);
-                    $("#min").val(response.min_people);
-                    $("#max").val(response.max_people);
-                    $("#price").val(response.price);
-                    $("#min").trigger("focus");
-                    $("#max").trigger("focus");
-                    $("#price").trigger("focus");
-                    $("#name").trigger("focus");
-                },
-                erorr: (e) => {
-                    console.log(e);
-                }
-            })
-        }
-        function isStatus(id) {
-            $.ajax({
-                url: "http://localhost:8080/api/pitch/status/" + id,
-                type: "POST",
-                dataType: "json",
-                crossDomain: true,
-                headers: { Authentication: 'Bearer ' },
-                contentType: 'application/json',
-                success: (response) => {
-                    history.go(0);
-                },
-                erorr: (e) => {
-                    console.log(e);
-                }
-            })
-        }
-
-        function pageRenderPitchDasboard(pageIndex) {
-            $.ajax({
-                url: "http://localhost:8080/api/pitch/list?page=" + pageIndex,
-                type: "GET",
-                dataType: "json",
-                crossDomain: true,
-                headers: {Authorization: 'Bearer '+window.localStorage.getItem("token")},
-                contentType: 'application/json',
-                success: (response) => {
-                    window.scroll({top:100})
-                    callApiPitch(response.content);
-                    renderPagingPitch(response.totalPages, response.pageable.pageNumber);
-
-                },
-                erorr: (e) => {
-                    console.log(e);
-                }
-            })
-        }
-        function renderPagingPitch(totalPages, pageNumber) {
-            let temp = " <ul class='pagination'>";
-            if (pageNumber == 0) {
-                temp += `<li class='page-item disabled'><a class="page-link" onclick="pageRenderPitch(${pageNumber})" tabindex="-1" aria-disabled="true">Previous</a>`
-                    + "</li>";
-            } else {
-                temp += `<li class='page-item '><a class="page-link" onclick="pageRenderPitch(${pageNumber - 1})" tabindex="-1" >Previous</a>`
-                    + "</li>";
-            }
-
-            for (let i = 0; i < totalPages; i++) {
-                if (i == pageNumber) {
-                    temp += ` <li class="page-item active" aria-current="page">
-            <a class="page-link" onclick="pageRenderPitchDasboard(${pageNumber})">${i + 1} <span class="visually-hidden">(current)</span></a>
-        </li>`;
-                } else if (totalPages - 6 > 1) {
-                    temp += `<li class="page-item">.</li>`;
-                    continue;
-                }
-                else {
-                    temp += `<li class="page-item"><a class="page-link" onclick="pageRenderPitchDasboard(${i})">${i + 1}</a></li>`;
-                }
-
-            }
-            if (pageNumber == totalPages - 1) {
-                temp += `<li class="page-item disabled">
-                        <a class="page-link" onclick="pageRenderPitchDasboard(${pageNumber})" aria-disabled="true">Next</a>
-                 </li>
-                </ul>`;
-            } else {
-                temp += `<li class="page-item">
-                        <a class="page-link" onclick="pageRenderPitchDasboard(${pageNumber + 1})"">Next</a>
-                    </li>
-                </ul>`;
-            }
-            $("#pagingPitch").html(temp);
-        }
-        function callApiPitch(data) {
-            let temp = "";
-            for (let i = 0; i < data.length; i++) {
-                temp += `<tr>
-                        <td>${i + 1}</td>
-                        <td class="fw-normal mb-1">${data[i].name}</td>
-                        <td>${data[i].min_people}</td>
-                        <td>${data[i].max_people}</td>
-                        <td>
-                            <button type="button" class="btn btn-outline-info btn-rounded" data-mdb-ripple-color="dark" onclick="editPitch(${data[i].id})">edit</button>`;
-                if (data[i].status) {
-                    temp += `<button type="button" class="btn btn-outline-success btn-rounded" data-mdb-ripple-color="dark" onclick="isStatus(${data[i].id})">is active</button>
-                     </td>
-                     </tr>`;
-                } else {
-                    temp += `<button type="button" class="btn btn-outline-danger btn-rounded" data-mdb-ripple-color="dark" onclick="isStatus(${data[i].id})">stop working</button>
-            </td>
-            </tr>`;
-                }
-            }
-            $("#renderPitch").html(temp);
-        }
 
     </script>
     <script>
-        function logout() {
-            window.localStorage.setItem("token", "");
-            history.go(0);
-        }
-        function pageRenderPitch(pageIndex) {
+        function callSort(sor) {
+            let requestParam = getParamSort();
+            let sreach = requestParam == null ? "" : requestParam[1];
+            let param = requestParam == null ? "" : requestParam[3];
+            let pageIndex = requestParam[7] == null ? "" : requestParam[7];
+            history.pushState(null, null, `?search=${sreach}&param=${param}&sor=${sor}&page=${pageIndex}`);
             $.ajax({
-                url: "http://localhost:8080/api/rent/history?page=" + pageIndex,
+                url: `http://localhost:8080/api/buisiness/list?search=${sreach}&param=${param}&sor=${sor}&page=${pageIndex}`,
                 type: "GET",
-                dataType: "json",
                 crossDomain: true,
-                headers: { Authorization: 'Bearer ' + window.localStorage.getItem("token") },
                 contentType: 'application/json',
+                dataType: "json",
                 success: (response) => {
-                    renderHistoryByUser(response.content);
+                    renderBuisiness(response.content, "#renderBuisiness");
                     renderPaging(response.totalPages, response.pageable.pageNumber);
-
                 },
-                erorr: (e) => {
+                error: (e) => {
                     console.log(e);
                 }
             })
+        }
+        function callParam(param) {
+            let requestParam = getParamSort();
+            let sreach = requestParam == null ? "" : requestParam[1];
+            let sor = requestParam[5] == null ? "" : requestParam[5];
+            let pageIndex = requestParam[7] == null ? "" : requestParam[7];
+            history.pushState(null, null, `?search=${sreach}&param=${param}&sor=${sor}&page=${pageIndex}`);
+            $.ajax({
+                url: `http://localhost:8080/api/buisiness/list?search=${sreach}&param=${param}&sor=${sor}&page=${pageIndex}`,
+                type: "GET",
+                crossDomain: true,
+                contentType: 'application/json',
+                dataType: "json",
+                success: (response) => {
+                    renderBuisiness(response.content, "#renderBuisiness");
+                    renderPaging(response.totalPages, response.pageable.pageNumber);
+                },
+                error: (e) => {
+                    console.log(e);
+                }
+            })
+        }
+        function pageRenderPitch(pageIndex) {
+            let requestParam = getParamSort();
+            $.ajax({
+                url: `http://localhost:8080/api/buisiness/list?search=&param=${requestParam[1]}&sor=${requestParam[3] == null ? "" : requestParam[3]}&page=${pageIndex}`,
+                type: "GET",
+                crossDomain: true,
+                contentType: 'application/json',
+                dataType: "json",
+                success: (response) => {
+                    renderBuisiness(response.content, "#renderBuisiness");
+                    renderPaging(response.totalPages, response.pageable.pageNumber);
+                },
+                error: (e) => {
+                    console.log(e);
+                }
+            })
+        }
+        function getParamSort() {
+            let temp = window.location.href.split("?");
+            let tempAnd = temp[1].split("&");
+            let requestParam = [];
+            let array;
+            for (let i = 0; i < tempAnd.length; i++) {
+                array = tempAnd[i].split("=");
+                for (let i = 0; i < array.length; i++) {
+                    requestParam.push(array[i]);
+                }
+            }
+            return requestParam;
+        }
+        function renderBuisiness(response, idRender) {
+            window.scroll({ top: 100 });
+            let temp = `<div class="d-flex justify-content-evenly mb-5">`;
+            let count = 0;
+            if (response.length == null || response.length == "") {
+                temp = `<div class="text-center"> No List</div>`;
+            } else {
+                for (let i = 0; i < response.length; i++) {
+                    if (count % 3 == 0) {
+                        temp += `</div>`;
+                        temp += `<div class="d-flex justify-content-evenly mb-5">`;
+                    }
+                    temp += `<div class='col-3'>
+      <div class='card' style='position: relative;'>
+          <div class='like-box text-center'>
+              <i class='fa-solid fa-heart'></i>
+              <div>${response[i].likes}</div>
+          </div>
+          <div class='bg-image hover-overlay ripple' data-mdb-ripple-color='light'>
+              <img src='${response[i].img}' class='img-fluid' />
+              <a href='#!'>
+                  <div class='mask' style='background-color: rgba(251, 251, 251, 0.15);'></div>
+              </a>
+          </div>
+          <div class='card-body'>
+              <h5 class='card-title'>${response[i].name}</h5>
+              <p class='card-text mb-1'>${response[i].describes}.</p>
+              <div class='d-flex mb-2 hover-link '>
+                  <div class='' style='margin-right: 10px;'>${response[i].views}</div>
+                  <div>View</div>
+              </div>
+              <a  onclick="nextDetails(${response[i].id})" class='btn btn-primary'>See</a>
+          </div>
+      </div>
+  </div>`;
+                    count++;
+                }
+            }
+            $(idRender).html(temp);
+
         }
         function renderPaging(totalPages, pageNumber) {
             let temp = " <ul class='pagination'>";
@@ -735,8 +543,8 @@
             for (let i = 0; i < totalPages; i++) {
                 if (i == pageNumber) {
                     temp += ` <li class="page-item active" aria-current="page">
-              <a class="page-link" onclick="pageRenderPitch(${pageNumber})">${i + 1} <span class="visually-hidden">(current)</span></a>
-          </li>`;
+            <a class="page-link" onclick="pageRenderPitch(${pageNumber})">${i + 1} <span class="visually-hidden">(current)</span></a>
+        </li>`;
                 } else if (totalPages - 6 > 1) {
                     temp += `<li class="page-item">.</li>`;
                     continue;
@@ -748,48 +556,21 @@
             }
             if (pageNumber == totalPages - 1) {
                 temp += `<li class="page-item disabled">
-                          <a class="page-link" onclick="pageRenderPitch(${pageNumber})" aria-disabled="true">Next</a>
-                   </li>
-                  </ul>`;
+                        <a class="page-link" onclick="pageRenderPitch(${pageNumber})" aria-disabled="true">Next</a>
+                 </li>
+                </ul>`;
             } else {
                 temp += `<li class="page-item">
-                          <a class="page-link" onclick="pageRenderPitch(${pageNumber + 1})"">Next</a>
-                      </li>
-                  </ul>`;
+                        <a class="page-link" onclick="pageRenderPitch(${pageNumber + 1})"">Next</a>
+                    </li>
+                </ul>`;
             }
             $("#paging").html(temp);
         }
-        function renderHistoryByUser(data) {
-            let temp = "";
-            if(data == ""){
-                temp="<div>NO LIST</div>";
-            }else{
-                for (let i = 0; i < data.length; i++) {
-                temp += ` <tr>
-                                  <td>
-                                    ${i + 1}
-                                  </td>
-                                  <td>
-                                    ${data[i].pitch.name}
-                                  </td>
-                                  <td>
-                                    ${data[i].timeStart}
-                                  </td>
-                                  <td>${data[i].pitch.buisiness.address}</td>
-                                  <td>
-                                    <button type="button" class="btn btn-link btn-sm btn-rounded">
-                                      details
-                                    </button>
-                                  </td>
-                                </tr>`
-            }
-            }
-            $("#renderHistoryByUser").html(temp);
-        }
     </script>
-    <script src="../js/history.js"></script>
     <!-- MDB -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.js"></script>
+    <script type="module" src="../js/homeUser.js"></script>
 </body>
 
 </html>

@@ -31,7 +31,6 @@ function callApiRegisterPitch() {
         crossDomain: true,
         contentType: 'application/json',
         success: (result) => {
-            console.log(result);
             if (result) {
                 messageBox(SUCCESS, "Register pitch");
                 setTimeout(()=>{

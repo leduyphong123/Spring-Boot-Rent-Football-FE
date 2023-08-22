@@ -1,10 +1,7 @@
 $(document).ready(()=>{
-    callApiHome();
     callApiHomeNew();
     callApiHomeLike();
     callApiHomeView();
-    // callApiOutstanding();
-    //vvv
 
 })
 
@@ -17,7 +14,6 @@ function callApiHomeNew(){
         crossDomain: true,
         contentType: 'application/json',
         success:  (response) =>{
-          console.log(response);
           renderHomeNew(response,"#renderHomeNew");
         },
         error: (e)=>{
@@ -36,7 +32,7 @@ function renderHomeNew(response,idRender){
        <div class="carousel-caption d-none d-md-block">
          <h5>${response[i].name}</h5>
          <p>${response[i].describes}</p>
-         <a href='#!' class='btn btn-primary'>See</a>
+         <a onclick="nextDetails(${response[i].id})" class='btn btn-primary'>See</a>
        </div>
      </div>`;
      }
@@ -103,7 +99,7 @@ function renderHomeLikeView(response,idRender){
                   <div class='' style='margin-right: 10px;'>${response[i].views}</div>
                   <div>View</div>
               </div>
-              <a href='#!' class='btn btn-primary'>See</a>
+              <a  onclick="nextDetails(${response[i].id})" class='btn btn-primary'>See</a>
           </div>
       </div>
   </div>`;
@@ -113,51 +109,5 @@ function renderHomeLikeView(response,idRender){
 
 }
 
-function callApiHome(){
-    $.ajax({
-        url: "http://localhost:8080/api/home",
-        type: "GET",
-        headers: {Authentication: 'Bearer '},
-        dataType: "json",
-        crossDomain: true,
-        contentType: 'application/json',
-        success:  (response) =>{
-            if(response){
-                oneHiddenToTrueRemoveHiddenElement("#userNotLogin","#userLogin");
-                callApiIsBuisiness();
-              
-            }else {
-                oneHiddenToTrueRemoveHiddenElement("#userLogin","#userNotLogin");
-            }
-        },
-        error: (e)=>{
-            console.log(e);
-        }
-    });
-}
-function callApiIsBuisiness(){
-    $.ajax({
-        url: "http://localhost:8080/api/is-buisiness",
-        type: "POST",
-        crossDomain: true,
-        contentType: 'application/json',
-        dataType: "json",
-        success:  (response) =>{
-            if(response){
-                oneHiddenToTrueRemoveHiddenElement("#btnRegisterABusiness","#btnBusinessManagement");
-              
-            }else {
-                oneHiddenToTrueRemoveHiddenElement("#btnBusinessManagement","#btnRegisterABusiness");
-            }
-        },
-        error: (e)=>{
-            console.log(e);
-        }
-    });
-}
 
-function oneHiddenToTrueRemoveHiddenElement(idOneElement,idTrueElement){
-    $(idOneElement).addClass("hiddenBox");
-    $(idTrueElement).removeClass("hiddenBox");
-}
 

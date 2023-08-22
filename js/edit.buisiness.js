@@ -26,10 +26,10 @@ $(document).ready(() => {
 
 function renderEdit(){
     $.ajax({
-        url: "http://localhost:8080/api/buisiness",
+        url: "http://localhost:8080/api/buisiness/user",
         dataType: "json",
         type: "GET",
-        headers: {Authentication: 'Bearer '},
+        headers: {Authorization: 'Bearer '+window.localStorage.getItem("token")},
         crossDomain: true,
         contentType: 'application/json',
         success: (response) => {
@@ -107,7 +107,7 @@ function callApiRegisterBuisiness(){
         dataType: "json",
         type: "POST",
         data: dataRequestRegisterBuisiness,
-        headers: {Authentication: 'Bearer '},
+        headers: {Authorization: 'Bearer '+window.localStorage.getItem("token")},
         crossDomain: true,
         contentType: 'application/json',
         success: (response) => {

@@ -1,11 +1,13 @@
 $(document).ready(() => {
     $("#editBuisiness").hide();
     $.ajax({
-        url: "http://localhost:8080/api/buisiness",
+        url: "http://localhost:8080/api/buisiness/user",
         type: "GET",
+        headers: {Authorization: 'Bearer '+window.localStorage.getItem("token")},
         dataType: "json",
         crossDomain: true,
         success: (response) => {
+            console.log(response);
             if(response.status){
                 $("#isActive").show();
                 $("#stopWorking").hide();
@@ -33,6 +35,7 @@ function hendleClickStatus(id){
             url: "http://localhost:8080/api/buisiness-status/"+$("#idBuisiness").val(),
             type: "post",
             dataType: "json",
+            headers: {Authorization: 'Bearer '+window.localStorage.getItem("token")},
             crossDomain: true,
             success: (response) => {
                 console.log(response);

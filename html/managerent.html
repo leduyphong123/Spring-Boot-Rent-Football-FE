@@ -142,7 +142,7 @@
                 <!-- Left links -->
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link fw-bold hover-link" href="#">HOME</a>
+                        <a class="nav-link fw-bold hover-link" href="http://127.0.0.1:5500/html/home.html">HOME</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link fw-bold hover-link" href="#">POST</a>
@@ -152,10 +152,10 @@
 
                 <div class="d-flex align-items-center" id="userNotLogin">
                     <button type="button" class="btn btn-link px-3 me-2">
-                        <a href="http://127.0.0.1:5500/html/login.html?">Login</a>
+                        <a href="http://127.0.0.1:5500/html/login.html">Login</a>
                     </button>
                     <button type="button" class="btn btn-primary me-3">
-                        <a href="http://127.0.0.1:5500/html/login.html?" class="text-white">Sign up for free</a>
+                        <a href="http://127.0.0.1:5500/html/login.html" class="text-white">Sign up for free</a>
                     </button>
 
                 </div>
@@ -329,7 +329,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="http://127.0.0.1:5500/html/pitch.html" class="nav-link active">
+                        <a href="http://127.0.0.1:5500/html/pitch.html" class="nav-link link-dark bg-white">
                             <svg class="bi me-2" width="16" height="16">
                                 <use xlink:href="#speedometer2"></use>
                             </svg>
@@ -337,7 +337,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="http://127.0.0.1:5500/html/managerent.html" class="nav-link link-dark bg-white">
+                        <a href="http://127.0.0.1:5500/html/managerent.html" class="nav-link active ">
                             <svg class="bi me-2" width="16" height="16">
                                 <use xlink:href="#table"></use>
                             </svg>
@@ -350,23 +350,26 @@
                 <div class="my-3"></div>
             </div>
             <div class="col-9 bg-white p-4 shadow border-danger border " style="border-radius: 5px;" id="listViewPitch">
-                <h3 class="text-center mb-5">Pitch</h3>
-                <div class="mb-4">
-                    <a href="http://127.0.0.1:5500/html/register-pitch.html" type="button"
-                        class="btn btn-outline-info">Create</a>
+                <h3 class="text-center mb-5">List rent</h3>
+                <div class="mb-4 col-4">
+                    <div class="form-outline mb-4">
+                        <input type="email" id="searchRent" class="form-control" />
+                        <label class="form-label" for="searchRent">phone</label>
+                    </div>
                 </div>
                 <div>
                     <table class="table align-middle mb-0 bg-light">
                         <thead class="bg-info">
                             <tr>
                                 <th>Index</th>
-                                <th>Name</th>
-                                <th>Min people</th>
-                                <th>Max people</th>
-                                <th colspan="2">Actions</th>
+                                <th>Phone</th>
+                                <th>Name pitch</th>
+                                <th>Date rent</th>
+                                <th>Time start</th>
+                                <th>Time end</th>
                             </tr>
                         </thead>
-                        <tbody id="renderPitch">
+                        <tbody id="renderManage">
 
 
                         </tbody>
@@ -392,58 +395,7 @@
                 </div>
             </div>
 
-            <div class="col-9 bg-white p-4 shadow border-danger border hiddenElement" style="border-radius: 5px;"
-                id="editViewPitch">
-                <h3 class="text-center mb-5">Edit Pitch</h3>
-                <div class="mb-4">
-                    <a href="http://127.0.0.1:5500/html/pitch.html" type="button" class="btn btn-outline-info">List</a>
-                </div>
-                <form>
-                    <input type="text" id="idPitch" hidden>
-                    <!-- Name input -->
-                    <div class="form-outline">
-                        <input type="text" id="name" class="form-control mb-0" data-mdb-showcounter="true"
-                            maxlength="30" required />
-                        <label class="form-label" for="name">Name buisiness</label>
-                        <div class="form-helper "></div>
-                    </div>
-                    <div class="mb-4" id="statusMessageName"></div>
 
-
-                    <!-- time input -->
-                    <div class="d-flex justify-content-between">
-                        <div class="form-outline">
-                            <input type="number" id="min" class="form-control mb-0 " required />
-                            <label class="form-label" for="min">people min</label>
-
-                        </div>
-                        <div style="width: 3rem;"></div>
-                        <div class="form-outline ">
-                            <input type="number" id="max" class="form-control mb-0 " required />
-                            <label class="form-label" for="max">people max</label>
-
-                        </div>
-                    </div>
-                    <div class="d-flex ">
-                        <div class="mb-4 col-6" id="statusMessageMin"></div>
-                        <div class="px-2"></div>
-                        <div class="mb-4 col-6" id="statusMessageMax"></div>
-                    </div>
-
-                    <!-- Name input -->
-                    <div class="form-outline">
-                        <input type="number" id="price" class="form-control mb-0" required />
-                        <label class="form-label" for="price">Price vnd / 30m</label>
-                    </div>
-                    <div class="mb-4" id="statusMessagePrice"></div>
-
-
-                    <div class="text-center">
-                        <button type="button" class="btn btn-primary" id="btnSubmit">Submit</button>
-                    </div>
-                </form>
-
-            </div>
 
         </div>
 
@@ -572,65 +524,44 @@
     </footer>
     <!-- Footer -->
     <script type="module" src="../js/homeUser.js"></script>
-    <script type="module" src="../js/pitch.js"></script>
+    <script type="module" src="../js/managerent.js"></script>
 
     <script>
-        function editPitch(id) {
-            $("#listViewPitch").addClass("hiddenElement");
-            $("#editViewPitch").removeClass("hiddenElement");
 
-            $.ajax({
-                url: "http://localhost:8080/api/pitch/edit/" + id,
-                type: "GET",
-                dataType: "json",
-                crossDomain: true,
-                headers: {Authorization: 'Bearer '+window.localStorage.getItem("token")},
-                contentType: 'application/json',
-                success: (response) => {
-                    $("#idPitch").val(response.id);
-                    $("#name").val(response.name);
-                    $("#min").val(response.min_people);
-                    $("#max").val(response.max_people);
-                    $("#price").val(response.price);
-                    $("#min").trigger("focus");
-                    $("#max").trigger("focus");
-                    $("#price").trigger("focus");
-                    $("#name").trigger("focus");
-                },
-                erorr: (e) => {
-                    console.log(e);
+        function getParamSort() {
+
+            if (window.location.href.search("\\?") < 0) {
+                return null;
+            } else {
+                let temp = window.location.href.split("?");
+                let tempAnd = temp[1].split("&");
+                let requestParam = [];
+                let array;
+                for (let i = 0; i < tempAnd.length; i++) {
+                    array = tempAnd[i].split("=");
+                    for (let i = 0; i < array.length; i++) {
+                        requestParam.push(array[i]);
+                    }
                 }
-            })
-        }
-        function isStatus(id) {
-            $.ajax({
-                url: "http://localhost:8080/api/pitch/status/" + id,
-                type: "POST",
-                dataType: "json",
-                crossDomain: true,
-                headers: { Authentication: 'Bearer ' },
-                contentType: 'application/json',
-                success: (response) => {
-                    history.go(0);
-                },
-                erorr: (e) => {
-                    console.log(e);
-                }
-            })
+                return requestParam;
+            }
+
         }
 
         function pageRenderPitchDasboard(pageIndex) {
+            let requestParam = getParamSort();
+            let sreach = requestParam == null ? "" : requestParam[1];
             $.ajax({
-                url: "http://localhost:8080/api/pitch/list?page=" + pageIndex,
+                url: `http://localhost:8080/api/rent/manage-rent?search=${sreach}&page=${pageIndex}`,
                 type: "GET",
                 dataType: "json",
                 crossDomain: true,
-                headers: {Authorization: 'Bearer '+window.localStorage.getItem("token")},
+                headers: { Authorization: 'Bearer ' + window.localStorage.getItem("token") },
                 contentType: 'application/json',
                 success: (response) => {
-                    window.scroll({top:100})
-                    callApiPitch(response.content);
-                    renderPagingPitch(response.totalPages, response.pageable.pageNumber);
+                    window.scroll({ top: 100 })
+                    renderManageRent(response.content);
+                    renderPagingManagerRent(response.totalPages, response.pageable.pageNumber);
 
                 },
                 erorr: (e) => {
@@ -638,7 +569,7 @@
                 }
             })
         }
-        function renderPagingPitch(totalPages, pageNumber) {
+        function renderPagingManagerRent(totalPages, pageNumber) {
             let temp = " <ul class='pagination'>";
             if (pageNumber == 0) {
                 temp += `<li class='page-item disabled'><a class="page-link" onclick="pageRenderPitch(${pageNumber})" tabindex="-1" aria-disabled="true">Previous</a>`
@@ -675,27 +606,19 @@
             }
             $("#pagingPitch").html(temp);
         }
-        function callApiPitch(data) {
+        function renderManageRent(data) {
             let temp = "";
             for (let i = 0; i < data.length; i++) {
                 temp += `<tr>
                         <td>${i + 1}</td>
-                        <td class="fw-normal mb-1">${data[i].name}</td>
-                        <td>${data[i].min_people}</td>
-                        <td>${data[i].max_people}</td>
-                        <td>
-                            <button type="button" class="btn btn-outline-info btn-rounded" data-mdb-ripple-color="dark" onclick="editPitch(${data[i].id})">edit</button>`;
-                if (data[i].status) {
-                    temp += `<button type="button" class="btn btn-outline-success btn-rounded" data-mdb-ripple-color="dark" onclick="isStatus(${data[i].id})">is active</button>
-                     </td>
-                     </tr>`;
-                } else {
-                    temp += `<button type="button" class="btn btn-outline-danger btn-rounded" data-mdb-ripple-color="dark" onclick="isStatus(${data[i].id})">stop working</button>
-            </td>
-            </tr>`;
-                }
+                        <td class="fw-normal mb-1">${data[i].phone}</td>
+                        <td>${data[i].pitch.name}</td>
+                        <td>${data[i].dateRent}</td>
+                        <td>${data[i].timeStart}</td>
+                        <td>${data[i].timeEnd}</td>`;
+
             }
-            $("#renderPitch").html(temp);
+            $("#renderManage").html(temp);
         }
 
     </script>
@@ -722,6 +645,7 @@
                 }
             })
         }
+
         function renderPaging(totalPages, pageNumber) {
             let temp = " <ul class='pagination'>";
             if (pageNumber == 0) {
@@ -761,10 +685,8 @@
         }
         function renderHistoryByUser(data) {
             let temp = "";
-            if(data == ""){
-                temp="<div>NO LIST</div>";
-            }else{
-                for (let i = 0; i < data.length; i++) {
+            console.log(data)
+            for (let i = 0; i < data.length; i++) {
                 temp += ` <tr>
                                   <td>
                                     ${i + 1}
@@ -782,7 +704,6 @@
                                     </button>
                                   </td>
                                 </tr>`
-            }
             }
             $("#renderHistoryByUser").html(temp);
         }

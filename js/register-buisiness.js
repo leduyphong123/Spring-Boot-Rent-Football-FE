@@ -1,5 +1,6 @@
 import { nation } from "./classobject/nation.js";
 import { validateFormInputSuccesDanger } from "./login.js";
+import { messageBox, SUCCESS, ERROR } from "./messageBox.js";
 const LOOK_GOOD = "Looks good!";
 
 $(document).ready(() => {
@@ -48,12 +49,13 @@ function callApiRegisterBuisiness(){
             address: addressData
         }
     );
+    console.log(dataRequestRegisterBuisiness);
     $.ajax({
-        url: "http://localhost:8080/apis/register-buisiness",
+        url: "http://localhost:8080/api/register-buisiness",
         dataType: "json",
         type: "POST",
         data: dataRequestRegisterBuisiness,
-        headers: {Authentication: 'Bearer '},
+        headers: {Authorization: 'Bearer '+window.localStorage.getItem("token")},
         crossDomain: true,
         contentType: 'application/json',
         success: (result) => {

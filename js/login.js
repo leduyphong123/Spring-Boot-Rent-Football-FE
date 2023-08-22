@@ -49,12 +49,11 @@ function callApiLogin() {
         dataType: "json",
         type: "POST",
         data: dataRequestRegister,
-        headers: {Authentication: 'Bearer '},
         crossDomain: true,
         contentType: 'application/json',
         success: (result) => {
-            console.log(result);
-            if (result) {
+            window.localStorage.setItem("token",result.token);
+            if (result.status) {
                 messageBox(SUCCESS, "Login");
                 setTimeout(()=>{
                     window.location.href = "http://127.0.0.1:5500/html/home.html";
