@@ -117,18 +117,18 @@ function renderBuisiness(response, idRender) {
                 temp += `<div class="d-flex justify-content-evenly mb-5">`;
             }
             temp += `<div class='col-3'>
-      <div class='card' style='position: relative;'>
+      <div class='card' style='position: relative;' style="height:412px">
           <div class='like-box text-center'>
               <i class='fa-solid fa-heart'></i>
               <div>${response[i].likes}</div>
           </div>
           <div class='bg-image hover-overlay ripple' data-mdb-ripple-color='light'>
-              <img src='${response[i].img}' class='img-fluid' />
+              <img src='${response[i].img}' class='img-fluid' style="height:173px";/>
               <a href='#!'>
                   <div class='mask' style='background-color: rgba(251, 251, 251, 0.15);'></div>
               </a>
           </div>
-          <div class='card-body'>
+          <div class='card-body' style="height:254px">
               <h5 class='card-title'>${response[i].name}</h5>
               <p class='card-text mb-1'>${response[i].describes}.</p>
               <div class='d-flex mb-2 hover-link '>

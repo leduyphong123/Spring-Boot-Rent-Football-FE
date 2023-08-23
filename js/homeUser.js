@@ -38,7 +38,6 @@ function callApiIsBuisiness(){
         },
         error: (e)=>{
             console.log(e);
-            console.log("response")
 
         }
     });

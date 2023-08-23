@@ -90,7 +90,6 @@ function callApiRegisterBuisiness(){
         addressData = addressHome+","+ street+","+town+","+district+","+city;
 
     }
-    console.log($("#registerTimeOpen").val());
     let dataRequestRegisterBuisiness = JSON.stringify(
         {
             name: $("#registerName").val(),
@@ -101,7 +100,6 @@ function callApiRegisterBuisiness(){
             address: addressData
         }
     );
-    console.log($("#idBuisiness").val());
     $.ajax({
         url: "http://localhost:8080/api/edit-buisiness/"+$("#idBuisiness").val(),
         dataType: "json",
@@ -111,7 +109,6 @@ function callApiRegisterBuisiness(){
         crossDomain: true,
         contentType: 'application/json',
         success: (response) => {
-            console.log(response);
             if (response) {
                 messageBox(SUCCESS, "Register buisines");
                 setTimeout(()=>{

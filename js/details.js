@@ -7,7 +7,7 @@ $(document).ready(() => {
         type: "GET",
         crossDomain: true,
         contentType: 'application/json',
-        headers: {Authorization: 'Bearer '+window.localStorage.getItem("token")},
+        // headers: {Authorization: 'Bearer '+window.localStorage.getItem("token")},
         dataType: "json",
         success: (response) => {
             renderDataById(response.name, "#idName");
@@ -28,17 +28,41 @@ $(document).ready(() => {
         callApiPitchList();
 
     })
+    $("#dateInput").on("input",()=>{
+      $.ajax({
+        url: "http://localhost:8080/api/rent/" + $("#inputPitch").val()+ "/" + $("#dateInput").val(),
+        type: "GET",
+        dataType: "json",
+        crossDomain: true,
+        contentType: 'application/json',
+        success: (response) => {
+            console.log(response)
+            if(response.length == 0){
+                renderTimeDefaultElement();
+
+            }else{
+
+                renderTimeStatus(response);
+            }
+        },
+        erorr: (e) => {
+            console.log(e);
+        }
+    })
+    })
 
     removeHiddenBox("#btnRent", "#boxPitch");
     addHiddenBox("#deleteIcon", "#boxPitch");
     addHiddenBox("#deleteIconSet", "#boxSetPitch");
     $("#btnRentCreate").click(() => {
+      if(window.localStorage.getItem("token")==""){
+        window.location.href = "http://127.0.0.1:5500/html/login.html"
+      }else{
         let timeStart = $("#timeStart").val()+":00";
         let timeEnd = $("#timeEnd").val()+":00";
         let dateCreate = new Date().toJSON().slice(0, 10);
         let dateRent = $("#dateInput").val();
         let idPitch = $("#inputPitch").val();
-        console.log(timeStart);
         let dataRequestRent = JSON.stringify({
             dateRent: dateRent,
             timeStartStr: timeStart,
@@ -71,6 +95,8 @@ $(document).ready(() => {
                 console.log(e);
             }
         })
+      }
+   
     })
 })
 
@@ -97,7 +123,6 @@ function callApiPitchList() {
         type: "GET",
         dataType: "json",
         crossDomain: true,
-        headers: {Authorization: 'Bearer '+window.localStorage.getItem("token")},
         contentType: 'application/json',
         success: (response) => {
             renderPitchList(response.content);
@@ -150,7 +175,6 @@ function renderPaging(totalPages, pageNumber) {
 
 function renderPitchList(data) {
     let temp = "";
-    console.log(data);
     for (let i = 0; i < data.length; i++) {
         temp += `<div class="row justify-content-center mb-3">
         <div class="col-md-12 col-xl-10">

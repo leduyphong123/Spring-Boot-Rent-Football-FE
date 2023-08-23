@@ -62,7 +62,6 @@ function renderPaging(totalPages, pageNumber) {
 
 function renderHistoryByUser(data) {
     let temp = "";
-    console.log(data)
     for (let i = 0; i < data.length; i++) {
         temp += ` <tr>
                                 <td>

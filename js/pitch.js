@@ -90,7 +90,6 @@ function callApiEditPitch() {
         crossDomain: true,
         contentType: 'application/json',
         success: (result) => {
-            console.log("result");
             if (result) {
                 messageBox(SUCCESS, "Edit pitch");
                 setTimeout(() => {

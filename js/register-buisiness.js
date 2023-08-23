@@ -19,7 +19,6 @@ $(document).ready(() => {
         && $("#registerTown").val() != ""
         && $("#registerStreet").val() != ""
         ){
-            console.log("b");
             callApiRegisterBuisiness();
     }
 })
@@ -49,7 +48,6 @@ function callApiRegisterBuisiness(){
             address: addressData
         }
     );
-    console.log(dataRequestRegisterBuisiness);
     $.ajax({
         url: "http://localhost:8080/api/register-buisiness",
         dataType: "json",
@@ -59,7 +57,6 @@ function callApiRegisterBuisiness(){
         crossDomain: true,
         contentType: 'application/json',
         success: (result) => {
-            console.log(result);
             if (result) {
                 messageBox(SUCCESS, "Register buisines");
                 setTimeout(()=>{

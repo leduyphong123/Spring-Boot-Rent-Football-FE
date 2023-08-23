@@ -73,11 +73,11 @@
 </head>
 
 <body style="position: relative;">
-       <!--message box-->
-       <div id="message" class="message opacity-75">
+    <!--message box-->
+    <div id="message" class="message opacity-75">
         <span id="messageText"></span>
     </div>
- <!--message box-->
+    <!--message box-->
     <div style="position: relative;">
         <div class="container hiddenBox" id="boxSetPitch">
             <div class="renderSetPitch d-flex align-items-center justify-content-center">
@@ -141,7 +141,7 @@
                     </div>
                     <div class="text-center p-5 text-danger ">
                         <div class="m-5 p-5" id="renderTimeDefault">
-                           
+
                         </div>
                     </div>
                 </div>
@@ -209,7 +209,8 @@
                             <a class="nav-link fw-bold hover-link" href="http://127.0.0.1:5500/html/home.html">HOME</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link fw-bold hover-link" href="#">POST</a>
+                            <a class="nav-link fw-bold hover-link"
+                                href="http://127.0.0.1:5500/html/list.html?search=&param=likes&sor=">Buisines</a>
                         </li>
                     </ul>
                     <!-- Left links -->
@@ -551,7 +552,7 @@
         </footer>
         <!-- Footer -->
         <script type="module" src="../js/home.js"></script>
-        <script  type="module" src="../js/details.js">
+        <script type="module" src="../js/details.js">
 
         </script>
         <script>
@@ -561,18 +562,21 @@
                 let temp = new Date().toJSON().slice(0, 10);
                 $("#dateInput").val(temp);
                 $("#dateInput").trigger("focus");
-                console.log($("#dateInput").val());
                 $.ajax({
                     url: "http://localhost:8080/api/rent/" + id + "/" + $("#dateInput").val(),
                     type: "GET",
                     dataType: "json",
                     crossDomain: true,
-                    headers: {Authorization: 'Bearer '+window.localStorage.getItem("token")},
                     contentType: 'application/json',
                     success: (response) => {
-                        console.log(response);
-                        renderTimeDefaultElement();
-                        renderTimeStatus(response);
+                        console.log(response)
+                        if(response.length == 0){
+                            renderTimeDefaultElement();
+
+                        }else{
+
+                            renderTimeStatus(response);
+                        }
                     },
                     erorr: (e) => {
                         console.log(e);
@@ -685,7 +689,6 @@
                 let timeEnd = $("#timeEnd").val().split(":");
                 let hour = parseInt(timeEnd[0]) - parseInt(timeStart[0]);
                 let minu = parseInt(timeEnd[1] - parseInt(timeStart[1]));
-                console.log(hour);
                 if (hour <= 0) {
                     countClickTime = 0;
                     $("#timeStart").val("");
@@ -710,14 +713,33 @@
                     countClickTime = 1;
                 }
             }
+            function getParamSort() {
 
+                if (window.location.href.search("\\?") < 0) {
+                    return null;
+                } else {
+                    let temp = window.location.href.split("?");
+                    let tempAnd = temp[1].split("&");
+                    let requestParam = [];
+                    let array;
+                    for (let i = 0; i < tempAnd.length; i++) {
+                        array = tempAnd[i].split("=");
+                        for (let i = 0; i < array.length; i++) {
+                            requestParam.push(array[i]);
+                        }
+                    }
+                    return requestParam;
+                }
+
+            }
             function pageRenderPitch(pageIndex) {
+                let requestParam = getParamSort();
+                let id= requestParam == null ? "" : requestParam[1];
                 $.ajax({
-                    url: "http://localhost:8080/api/pitch/list/find-buisiness?page=" + pageIndex,
+                    url: `http://localhost:8080/api/pitch/list/find-buisiness?id=${id}&page=${pageIndex}`,
                     type: "GET",
                     dataType: "json",
                     crossDomain: true,
-                    headers: {Authorization: 'Bearer '+window.localStorage.getItem("token")},
                     contentType: 'application/json',
                     success: (response) => {
                         renderPitchList(response.content);

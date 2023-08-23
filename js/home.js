@@ -28,7 +28,7 @@ function renderHomeNew(response,idRender){
     }else{
      for(let i=0;i<response.length;i++){
        temp +=` <div class="carousel-item active">
-       <img src="${response[i].img}" class="d-block w-100" alt="Wild Landscape" style="height: 775px;"/>
+       <img src="${response[i].img}" class="d-block w-100" alt="Wild Landscape" style="height: 600px;"/>
        <div class="carousel-caption d-none d-md-block">
          <h5>${response[i].name}</h5>
          <p>${response[i].describes}</p>
@@ -87,7 +87,7 @@ function renderHomeLikeView(response,idRender){
               <div>${response[i].likes}</div>
           </div>
           <div class='bg-image hover-overlay ripple' data-mdb-ripple-color='light'>
-              <img src='${response[i].img}' class='img-fluid' />
+              <img src='${response[i].img}' class='img-fluid' style="height:178px; width:306px"/>
               <a href='#!'>
                   <div class='mask' style='background-color: rgba(251, 251, 251, 0.15);'></div>
               </a>
